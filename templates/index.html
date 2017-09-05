@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css" integrity="sha256-Q0zCrUs2IfXWYx0uMKJfG93CvF6oVII21waYsAV4/8Q=" crossorigin="anonymous" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" integrity="sha256-ANTwsT2Ffs0EVPyOuss4fxYnCxewzdZeahx93/uLWDM=" crossorigin="anonymous" />
+<style>
+.document-box {
+    padding-left: 15px;
+    padding-right: 15px;
+    min-width: 925px;
+    max-width: 1300px;
+    margin-top: 1%;
+    margin-right: auto;
+    margin-left: auto;
+}
+</style>
+<style>
+.title-box {
+    background: #C3F4F4;
+    padding: 1em 1em;
+    border-radius: 3px;
+    color: #000000;
+}
+</style>
+<style>
+.set-gridbox-panel {
+    margin: 0 10px 0 0;
+    border: 1px solid transparent;
+    border-color: #FF6347;
+    border-radius: 4px;
+    padding-bottom: 5px;
+}
+.set-gridbox-panel > .heading {
+    color: #FFFAFA;
+    background-color: #FF6347;
+    border-color: #FF6347;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+    font-weight: bold;
+}
+.set-gridbox-panel > .body {
+    padding: 15px;
+    overflow: hidden;
+    position: relative;
+}
+.set-gridbox-panel > .body > .gridbox-params {
+    padding: 10px;
+    border: 1px solid #DCDCDC;
+    height: 400px;
+    position: relative;'
+</style>
+<style>
+.button-success,
+.button-execute,
+.button-warning {
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0px 0px 1px 2px #DCDCDC;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    width: 150px;
+}
+.button-success:active,
+.button-execute:active,
+.button-warning:active {
+    position:relative;
+    top:1px;
+    background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1)),
+}
+.button-success:focus,
+.button-execute:focus,
+.button-warning:focus {
+    background-image: none;
+}
+    
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-execute {
+    background: rgb(66, 184, 221); /* this is a light blue */
+}
+    
+.button-warning {
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-success-disable {
+    background: rgb(146, 220, 164); /* this is an orange */
+}
+</style>
+<style>
+/* for mol-viewer */
+.mol-container {
+    position: relative;
+    height: 500px;
+}
+.round-border {
+    border: 4px solid #DCDCDC;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 2px #696969;
+}
+</style>
+<style>
+.upload-area {
+    width: 50%;
+    padding: 2px;
+}
+.file-input {
+    border: 2px solid #DAE1FF;
+    padding: 2px;
+}
+.inputBtnSection {
+    border: 2px solid #DAE1FF;
+    padding: 2px;
+    display:inline-block;
+    vertical-align:top;
+    font-family:verdana;
+}
+.inputBtnSection * {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+.inputBtnSection .fake-file-input {
+    display:inline-block;
+    vertical-align:top;
+    height: 27px;
+    width: 200px;
+    margin: 0;
+    font-size:14px;
+    padding:0 3px;
+}
+.inputBtnSection .fileUpload {
+    position: relative;
+    overflow: hidden;
+    border:solid 1px gray;
+    display:inline-block;
+    vertical-align:top;
+}
+.inputBtnSection .browse-botton {
+    display:inline-block;
+    vertical-align:top;
+    background:rgba(0,0,0,0.5);
+    font-size:14px;
+    padding:0 10px;
+    height:25px;
+    line-height:22px;
+    color:#fff;
+}
+.inputBtnSection .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+</style>
+<style>
+.dialog-bubble {
+    bottom: 35px;
+    left: 0;
+    width: 300px;
+    position: absolute;
+    display: none;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.slide-up {
+    display: block;
+}
+</style>
+<style>
+.apply-area {
+    height: 154px;
+    width: 50%;
+}
+.apply-area .buttom-cabinet {
+    width: 154px;
+    float: left;
+}
+.apply-area .console {
+    height: 128px;
+    width: calc(100% - 180px);
+    min-width: 100px;
+    float: left;
+    padding: 8px;
+    margin: 4px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+</style>
+</head>
+
+
+<body>
+<div class="document-box">
+    <div class="title-box">
+        <div style="font-size: 200%; font-weight: bold; margin: 10px 0;">AutoBox</div>
+        <div style="overflow-wrap: break-word; margin: 10px 0; font-family: Arial;">Generate a Translated, Rotated Structure and Set a Grid Box Ready for Use in AutoDock and AutoDock Vina.</div>
+    </div>
+</div>
+    
+<div class="pure-g document-box">
+    <div class="pure-u-1"><div class="pure-g">
+        <div class="pure-u-1-2"><div class="pure-g">
+            <div class="pure-u-1">
+                <div class="set-gridbox-panel">
+                    <div class="heading">Set Grid Box</div>
+                    <div id="set-gridbox-panel-body" class="body">
+                        <div id='set-gridbox-params' class="gridbox-params">
+                            <form class="pure-form pure-form-stacked">
+                                <fieldset>
+                                    <div style="font-size: 120%;">Grid Box Center:</div>
+                                    
+                                    <label for="email">x:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-center-x" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
+                                        <div id="idir-gridbox-center-x" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div id="knob-gridbox-center-x" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                    <label for="email">y:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-center-y" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
+                                        <div id="idir-gridbox-center-y" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div id="knob-gridbox-center-y" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                    <label for="email">z:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-center-z" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
+                                        <div id="idir-gridbox-center-z" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div id="knob-gridbox-center-z" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                </fieldset>
+                                <fieldset>
+                                    <div style="font-size: 120%;">Grid Box Points:</div>
+                                    
+                                    <label for="email">x:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-points-x" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
+                                        <div id="idir-gridbox-points-x" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                    <label for="email">y:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-points-y" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
+                                        <div id="idir-gridbox-points-y" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                    <label for="email">z:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-points-z" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
+                                        <div id="idir-gridbox-points-z" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                    <label for="email">spacing:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-points-spacing" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0.375</div>
+                                        <div id="idir-gridbox-points-spacing" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div style="display: inline-block; vertical-align: bottom;"><input id="knob-third-decima-point" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                </fieldset>
+                                <fieldset>
+                                    <div style="font-size: 120%;">Grid Box Rotation:</div>
+                                    
+                                    <label for="email">rotation angle:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-rotation-angle" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
+                                        <div id="idir-gridbox-rotation-angle" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div id="knob-gridbox-rotation-angle" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                    <label for="email">tilt angle:</label>
+                                    <div style="padding-left: 10px;">
+                                        <div id="ival-gridbox-tilt-angle" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
+                                        <div id="idir-gridbox-tilt-angle" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                                        <div id="knob-gridbox-tilt-angle" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                                    </div>
+                                    
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+        <div class="pure-u-1-2">
+            <div class="mol-container round-border">
+                <div id="mol-viewer" style="height: 100%;"></div>
+                <input id="selected-residue" style="display: none;" />
+            </div>
+        </div>
+    </div></div>
+</div>
+    
+<div class="document-box">
+    <div class="upload-area">
+        <button id="upload-action" class="button-execute pure-button">Upload</button>
+        <div class="inputBtnSection">
+            <input id="upload-input" class="fake-file-input" placeholder="Choose File" disabled="disabled" />
+            <label class="fileUpload">
+                <input id="file" type="file" name='file' class="upload" />
+                <span class="browse-botton">Browse...</span>
+            </label>
+        </div>
+    </div>
+    
+    <div class="apply-area">
+        <div class="buttom-cabinet">
+            <div style="padding: 2px;"><button id="apply-action" class="button-warning pure-button">Apply</button></div>
+            <div style="padding: 2px;"><button id="download-pdb" class="button-success pure-button" disabled>Download PDB</button></div>
+            <div style="position: relative; padding: 2px;">
+                <div id="autodock-config-dialog-bubble" class="dialog-bubble"></div>
+                <button id="autodock-config" class="button-success pure-button">AutoDock Config</button>
+            </div>
+            <div style="position: relative; padding: 2px;">
+                <div id="vina-config-dialog-bubble" class="dialog-bubble"></div>
+                <button id="vina-config" class="button-success pure-button">Vina Config</button>
+            </div>
+        </div>
+        <div id="console" class="console">
+            Welcome to AutoBox server! (Upload a pdb structure first...)
+        </div>
+    </div>
+</div>
+
+<textarea style="display: none;" id="mol"></textarea>   
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/js/perfect-scrollbar.jquery.min.js" integrity="sha256-G7x5vTR7iVBtZ10VflIkF/XJzfzAuS0tE6AFIb4d9FQ=" crossorigin="anonymous"></script>
+<script src="http://3Dmol.csb.pitt.edu/build/3Dmol-nojquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.9.1/math.min.js" integrity="sha256-idZIhOSjc6XLASkM1rlo2qEhVdT73C+DwPGcWQ1KlsM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js" integrity="sha256-2144q+NOM/XU6ZxSqRTJ8P0W/CkY6zXc6mXYt4+mF9s=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/vendor/jquery.ui.widget.min.js" integrity="sha256-PSJreqTN+fSOXC0tOnMm2+LKe92f/Oob0VKfGiCVvkw=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.iframe-transport.min.js" integrity="sha256-k7tuqBGRYeQRrXKq/+wJh2b55o1SuSyXMNEFe8a0ePE=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.fileupload.min.js" integrity="sha256-tcXzqklRDpmITiQ0Ff+S6H2uUQl089oXkEyGjOOGmN4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.7/download.js" integrity="sha256-ABOnKwsYVd1DoQ6h2x/+RNc7ddqtqBBPJDR76/Q6+Zo=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+    
+<script>
+// Add scroll bar
+$(document).ready(function(){
+    $('#set-gridbox-params').perfectScrollbar();
+});
+</script>
+<script>
+// Add click events
+$(document).ready(function(){
+    document.getElementById("file").onchange = function () {
+        document.getElementById("upload-input").value = this.value.replace(/^.*[\\\/]/, '');
+    };
+    
+    $('#file').fileupload({
+        url: $SCRIPT_ROOT + '/upload_protein',
+        sequentialUploads: true,
+        formData: {'aaa': 'bbb'},
+        dataType: 'json',
+        maxNumberOfFiles: 1,
+        add: function (e, data) {
+            `
+            Clear response message if one exists.
+            Remove any hooked click event listeners.
+            Add a new click event listener.
+            `
+            $('#upload-action').off( "click" );
+            $('#upload-action').click(function() {
+                data.submit();
+            });
+        },
+        done: function (e, data) {
+            if (data.result['message'] == 'success') {
+                $("textarea#mol").val(data.result['pdb']);
+                
+                $("#ival-gridbox-center-x").html(data.result['x']);
+                $("#ival-gridbox-center-y").html(data.result['y']);
+                $("#ival-gridbox-center-z").html(data.result['z']);
+                
+                var gridbox_points_x = Math.ceil(data.result['rx'] / $("#ival-gridbox-points-spacing").html());
+                var gridbox_points_y = Math.ceil(data.result['ry'] / $("#ival-gridbox-points-spacing").html());
+                var gridbox_points_z = Math.ceil(data.result['rz'] / $("#ival-gridbox-points-spacing").html());
+                $("#ival-gridbox-points-x").html(gridbox_points_x);
+                $("#ival-gridbox-points-y").html(gridbox_points_y);
+                $("#ival-gridbox-points-z").html(gridbox_points_z);
+                
+                $("#ival-gridbox-rotation-angle").html(data.result['deg_y']);
+                $("#ival-gridbox-tilt-angle").html(data.result['deg_z']);
+                start_viewer();
+                
+                $('#download-pdb').prop('disabled', false);
+                
+                $('#console').html('<div>Protein uploaded! Try turning the knob...</div>' + 
+                                   '<div style="font-size: 80%;">(Note: if the pdb file contains multiple segments, i.e. seperated by "TER", only the first one is parsed.)');
+            }
+            else if (data.result['message'] == 'fail' && data.result['reason'] == 'not a pdb') {
+                $('#console').html('<div>Not a pdb file!</div>');
+            }
+            else if (data.result['message'] == 'fail' && data.result['reason'] == 'file cannot be processed') {
+                $('#console').html('<div>The uploaded file cannot be processed! Check your uploaded file again!</div>');
+            }
+        },
+    });
+    
+    
+    $('#apply-action').click(function() {
+        $.ajax({
+            type: 'POST',
+            url: $SCRIPT_ROOT + '/apply_gridbox',
+            data: {
+                'pdb': $("textarea#mol").val(),
+                
+                'x': $("#ival-gridbox-center-x").html(),
+                'y': $("#ival-gridbox-center-y").html(),
+                'z': $("#ival-gridbox-center-z").html(),
+                
+                'rx': $("#ival-gridbox-points-x").html() * $("#ival-gridbox-points-spacing").html(),
+                'ry': $("#ival-gridbox-points-y").html() * $("#ival-gridbox-points-spacing").html(),
+                'rz': $("#ival-gridbox-points-z").html() * $("#ival-gridbox-points-spacing").html(),
+                
+                'deg_x': 0,
+                'deg_y': $("#ival-gridbox-rotation-angle").html(),
+                'deg_z': $("#ival-gridbox-tilt-angle").html(),
+            },
+            success: function(json_str) {
+                var responses = JSON.parse(json_str);
+                $("textarea#mol").val(responses['pdb']).trigger("contentchange");
+                
+                $("#ival-gridbox-center-x").html(responses['x']).trigger("contentchange");
+                $("#ival-gridbox-center-y").html(responses['y']).trigger("contentchange");
+                $("#ival-gridbox-center-z").html(responses['z']).trigger("contentchange");
+                
+                var gridbox_points_x = Math.ceil(responses['rx'] / $("#ival-gridbox-points-spacing").html());
+                var gridbox_points_y = Math.ceil(responses['ry'] / $("#ival-gridbox-points-spacing").html());
+                var gridbox_points_z = Math.ceil(responses['rz'] / $("#ival-gridbox-points-spacing").html());
+                $("#ival-gridbox-points-x").html(gridbox_points_x).trigger("contentchange");
+                $("#ival-gridbox-points-y").html(gridbox_points_y).trigger("contentchange");
+                $("#ival-gridbox-points-z").html(gridbox_points_z).trigger("contentchange");
+                
+                $("#ival-gridbox-rotation-angle").html(responses['deg_y']).trigger("contentchange");
+                $("#ival-gridbox-tilt-angle").html(responses['deg_z']).trigger("contentchange");
+                
+                $('#download-pdb').prop('disabled', false);
+                $('#console').html('<div>Settings applied!</div>');
+            },
+        });
+    });
+    
+    $('#download-pdb').click(function() {
+        var pdb_text = 'TITLE    AutoBox SERVER, 2017 (' + $SCRIPT_ROOT + ')\n' + $('textarea#mol').val() + '\nEND';
+        download(pdb_text, 'autobox.pdb', "text/plain");
+    });
+    $('#autodock-config').click(function() {
+        var x = $('#ival-gridbox-center-x').html();
+        var y = $('#ival-gridbox-center-y').html();
+        var z = $('#ival-gridbox-center-z').html();
+        var point_x = $('#ival-gridbox-points-x').html();
+        var point_y = $('#ival-gridbox-points-y').html();
+        var point_z = $('#ival-gridbox-points-z').html();
+        var spacing = $('#ival-gridbox-points-spacing').html();
+        var autodock_config = '<div>' + 'gridcenter' + ' ' + x + ' ' + y + ' ' + z + '</div>' +
+                              '<div>' + 'npts' + ' ' + point_x + ' ' + point_y + ' ' + point_z + '</div>' +
+                              '<div>' + 'spacing' + ' ' + spacing + '</div>';
+        $('#console').html(autodock_config);
+    });
+    $('#vina-config').click(function() {
+        var x = $('#ival-gridbox-center-x').html();
+        var y = $('#ival-gridbox-center-y').html();
+        var z = $('#ival-gridbox-center-z').html();
+        var size_x = $('#ival-gridbox-points-x').html() * $('#ival-gridbox-points-spacing').html();
+        var size_y = $('#ival-gridbox-points-y').html() * $('#ival-gridbox-points-spacing').html();
+        var size_z = $('#ival-gridbox-points-z').html() * $('#ival-gridbox-points-spacing').html();
+        var vina_config = '<div>' + 'center_x = ' + x + '</div>' +
+                          '<div>' + 'center_y = ' + y + '</div>' +
+                          '<div>' + 'center_z = ' + z + '</div>' +
+                          '<div>' + 'size_x = ' + size_x + '</div>' +
+                          '<div>' + 'size_y = ' + size_y + '</div>' +
+                          '<div>' + 'size_z = ' + size_z + '</div>';
+        $('#console').html(vina_config);
+    });
+});
+</script>
+<script>
+// define knob behavior
+$(function() {
+    // infinite knob, iPod click wheel
+    var v, up=0, down=0, i=0;
+
+    $("input#knob").knob(
+        {
+            min : 0,
+            max : 20,
+            stopper : false,
+            change : function () {
+                //console.log(this.$div.parent().siblings());
+                var $ival = $(this.$div.parent().siblings()[0]),
+                    $idir = $(this.$div.parent().siblings()[1]).children(),
+                    i = $ival.html(),
+                    incr = function() { i++; $idir.show().html("+").fadeOut(); $ival.html(i).trigger("contentchange"); },
+                    decr = function() { i--; $idir.show().html("-").fadeOut(); $ival.html(i).trigger("contentchange"); };
+               
+                if(v > this.cv){
+                    if(up){
+                        decr();
+                        up=0;
+                    }else{up=1;down=0;}
+                } else {
+                    if(v < this.cv){
+                        if(down){
+                            incr();
+                            down=0;
+                        }else{down=1;up=0;}
+                    }
+                }
+                v = this.cv;
+            },
+        }
+    );
+    
+    $("input#knob-third-decima-point").knob(
+        {
+            min : 0,
+            max : 20,
+            stopper : false,
+            change : function () {
+                //console.log(this.$div.parent().siblings());
+                var $ival = $(this.$div.parent().siblings()[0]),
+                    $idir = $(this.$div.parent().siblings()[1]).children(),
+                    i = parseFloat($ival.html()),
+                    incr = function() { i=(i+0.001).toFixed(3); $idir.show().html("+").fadeOut(); $ival.html(i).trigger("contentchange"); },
+                    decr = function() { i=(i-0.001).toFixed(3); $idir.show().html("-").fadeOut(); $ival.html(i).trigger("contentchange"); };
+               
+                if(v > this.cv){
+                    if(up){
+                        decr();
+                        up=0;
+                    }else{up=1;down=0;}
+                } else {
+                    if(v < this.cv){
+                        if(down){
+                            incr();
+                            down=0;
+                        }else{down=1;up=0;}
+                    }
+                }
+                v = this.cv;
+            },
+        }
+    );
+});
+</script>
+<script>
+//$(document).ready(function() {
+var atomcallback1 = function(atom, viewer) {
+  console.log(atom);
+  atom.clickLabel = viewer.addLabel(atom.elem + atom.serial, {
+                fontSize : 14,
+                position : {
+                    x : atom.x,
+                    y : atom.y,
+                    z : atom.z
+                },
+                backgroundColor: "black"
+            });
+            atom.clicked = true;
+}
+var atomcallback2 = function(atom, viewer) {
+  viewer.removeAllLabels();
+}
+</script>
+<script>
+// for mol-viewer
+function create_mol_viewer() {
+    var element = $('#mol-viewer');
+    var config = { backgroundColor: 'white' };
+    var glviewer = $3Dmol.createViewer( element, config );
+    
+    glviewer.addArrow({
+        start: {x:-30.0, y:-30.0, z:0.0},
+        end: {x:-20.0, y:-30.0, z:0.0},
+        color: 'red',
+        radius: 0.5,
+        radiusRadio:1.0,
+        mid:1.0,
+        clickable:false,
+        callback:function(){
+            this.color.setHex(0xFF0000FF);
+            glviewer.render( );
+        }
+    });
+    glviewer.addArrow({
+        start: {x:-30.0, y:-30.0, z:0.0},
+        end: {x:-30.0, y:-20.0, z:0.0},
+        color: 'green',
+        radius: 0.5,
+        radiusRadio:1.0,
+        mid:1.0,
+        clickable:false,
+        callback:function(){
+            this.color.setHex(0xFF0000FF);
+            glviewer.render( );
+        }
+    });
+    glviewer.addArrow({
+        start: {x:-30.0, y:-30.0, z:0.0},
+        end: {x:-30.0, y:-30.0, z:10.0},
+        color: 'blue',
+        radius: 0.5,
+        radiusRadio:1.0,
+        mid:1.0,
+        clickable:false,
+        callback:function(){
+            this.color.setHex(0xFF0000FF);
+            glviewer.render( );
+        }
+    });
+    
+    glviewer.render();
+    return glviewer
+};
+</script>
+<script>
+function load_molecule(glviewer, pdb_text) {
+    GLM_molecule = glviewer.addModel(pdb_text, "pdb");
+    glviewer.setStyle({}, {cartoon: {colorscheme: 'ssJmol'}});
+    glviewer.setStyle({resn: 'LIG'}, {stick: {colorscheme: 'cyanCarbon'}});
+    glviewer.render();
+    /*
+    setInterval(function() {
+        m.rotate(1);
+    }, 50);
+    */
+    glviewer.setClickable({}, true, function(){
+        console.log(this);
+        //atom.clickLabel = glviewer.addResLabels({resi: atom.resi}, glviewer);
+        glviewer.removeAllLabels();
+        glviewer.addLabel(this.resn + this.resi + ' ' + this.atom, {
+            fontSize : 14,
+            position : {
+              x : this.x,
+              y : this.y,
+              z : this.z
+            },
+            //backgroundColor: "purple",
+        });
+        $('input#selected-residue').val(':' + this.resi);
+    });
+    
+    return GLM_molecule;
+}
+function remove_molecule(viewer, GLM_molecule) {
+    viewer.removeModel(GLM_molecule);
+    viewer.render();
+}
+
+function rotate_Xaxis(M, deg) {
+  var sin = math.sin;
+  var cos = math.cos;
+  var Rx = math.matrix([[1,0,0],[0,cos(deg),-sin(deg)],[0,sin(deg),cos(deg)]]);
+  var RM = math.multiply(Rx, M);
+  return RM;
+}
+function rotate_Yaxis(M, deg) {
+  var sin = math.sin;
+  var cos = math.cos;
+  var Ry = math.matrix([[cos(deg),0,sin(deg)],[0,1,0],[-sin(deg),0,cos(deg)]]);
+  var RM = math.multiply(Ry, M);
+  return RM;
+}
+function rotate_Zaxis(M, deg) {
+  var sin = math.sin;
+  var cos = math.cos;
+  var Rz = math.matrix([[cos(deg),-sin(deg),0],[sin(deg),cos(deg),0],[0,0,1]]);
+  var RM = math.multiply(Rz, M);
+  return RM;
+}
+
+function rotate_left(gridbox) {
+  var unit_deg = math.pi/180;
+  var new_gridbox = rotate_Zaxis(gridbox, -unit_deg);
+  return new_gridbox;
+}
+function rotate_right(gridbox) {
+  var unit_deg = math.pi/180;
+  var new_gridbox = rotate_Zaxis(gridbox, unit_deg);
+  return new_gridbox;
+}
+function rotate_up(gridbox) {
+  var unit_deg = math.pi/180;
+  var new_gridbox = rotate_Xaxis(gridbox, -unit_deg);
+  return new_gridbox;
+}
+function rotate_down(gridbox) {
+  var unit_deg = math.pi/180;
+  var new_gridbox = rotate_Xaxis(gridbox, unit_deg);
+  return new_gridbox;
+}
+
+function triangle(viewer, gridbox, polygon) {
+    var vertices = [];
+    var normals = [];
+    var colors = [];
+    /*
+    var unit_deg = math.pi/180;
+    var r = 20;
+    var x = 0;
+    var y = 0;
+    var z = 0;
+    var deg_z = 180;
+    var deg_x = 90;
+    */
+    
+    
+    // define eight verices of gridbox
+    /*
+    var gridbox = math.matrix([[-r,-r, r, r,-r, r,-r, r],
+                               [-r, r,-r, r,-r,-r, r, r],
+                               [-r,-r,-r,-r, r, r, r, r]])
+
+    gridbox = rotate_Zaxis(gridbox, unit_deg*deg_z);
+    gridbox = rotate_Xaxis(gridbox, -unit_deg*deg_x);
+
+    var T = math.matrix([[x,x,x,x,x,x,x,x],
+                         [y,y,y,y,y,y,y,y],
+                         [z,z,z,z,z,z,z,z]]);
+    gridbox = math.add(gridbox, T);
+    */
+    
+/*
+    var gridbox = math.matrix([[-r+x,-r+x, r+x, r+x,-r+x, r+x,-r+x, r+x],
+                               [-r+y, r+y,-r+y, r+y,-r+y,-r+y, r+y, r+y],
+                               [-r+z,-r+z,-r+z,-r+z, r+z, r+z, r+z, r+z]])
+*/
+/*
+    (-r+x,-r+y,-r+z)
+    (-r+x,r+y,-r+z)
+    (r+x,-r+y,-r+z)
+    (r+x,r+y,-r+z)
+    (-r+x,-r+y,r+z)
+    (r+x,-r+y,r+z)
+    (-r+x,r+y,r+z)
+    (r+x,r+y,r+z)
+*/
+
+    //triangle
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,0]),gridbox.get([1,0]),gridbox.get([2,0])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,1]),gridbox.get([1,1]),gridbox.get([2,1])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,2]),gridbox.get([1,2]),gridbox.get([2,2])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,3]),gridbox.get([1,3]),gridbox.get([2,3])));
+
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,4]),gridbox.get([1,4]),gridbox.get([2,4])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,5]),gridbox.get([1,5]),gridbox.get([2,5])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,6]),gridbox.get([1,6]),gridbox.get([2,6])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,7]),gridbox.get([1,7]),gridbox.get([2,7])));
+
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,0]),gridbox.get([1,0]),gridbox.get([2,0])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,2]),gridbox.get([1,2]),gridbox.get([2,2])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,4]),gridbox.get([1,4]),gridbox.get([2,4])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,5]),gridbox.get([1,5]),gridbox.get([2,5])));
+
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,1]),gridbox.get([1,1]),gridbox.get([2,1])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,6]),gridbox.get([1,6]),gridbox.get([2,6])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,3]),gridbox.get([1,3]),gridbox.get([2,3])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,7]),gridbox.get([1,7]),gridbox.get([2,7])));
+
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,1]),gridbox.get([1,1]),gridbox.get([2,1])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,0]),gridbox.get([1,0]),gridbox.get([2,0])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,6]),gridbox.get([1,6]),gridbox.get([2,6])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,4]),gridbox.get([1,4]),gridbox.get([2,4])));
+
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,3]),gridbox.get([1,3]),gridbox.get([2,3])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,7]),gridbox.get([1,7]),gridbox.get([2,7])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,2]),gridbox.get([1,2]),gridbox.get([2,2])));
+    vertices.push(new $3Dmol.Vector3(gridbox.get([0,5]),gridbox.get([1,5]),gridbox.get([2,5])));
+
+
+/*
+    vertices.push(new $3Dmol.Vector3(-r+x,-r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(-r+x,r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,-r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,r+y,-r+z));
+
+    vertices.push(new $3Dmol.Vector3(-r+x,-r+y,r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,-r+y,r+z));
+    vertices.push(new $3Dmol.Vector3(-r+x,r+y,r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,r+y,r+z));
+
+    vertices.push(new $3Dmol.Vector3(-r+x,-r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,-r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(-r+x,-r+y,r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,-r+y,r+z));
+
+    vertices.push(new $3Dmol.Vector3(-r+x,r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(-r+x,r+y,r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,r+y,r+z));
+
+    vertices.push(new $3Dmol.Vector3(-r+x,r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(-r+x,-r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(-r+x,r+y,r+z));
+    vertices.push(new $3Dmol.Vector3(-r+x,-r+y,r+z));
+
+    vertices.push(new $3Dmol.Vector3(r+x,r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,r+y,r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,-r+y,-r+z));
+    vertices.push(new $3Dmol.Vector3(r+x,-r+y,r+z));
+*/
+ 
+    
+    /*
+    var polygon = math.matrix([[ 0, 0, 0, 0,-1, 1],
+                               [ 0, 0,-1, 1, 0, 0],
+                               [-1, 1, 0, 0, 0, 0]])
+    
+    polygon = rotate_Zaxis(polygon, unit_deg*deg_z);
+    polygon = rotate_Xaxis(polygon, -unit_deg*deg_x);
+    */
+    
+    
+    normals.push(new $3Dmol.Vector3(polygon.get([0,0]),polygon.get([1,0]),polygon.get([2,0])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,0]),polygon.get([1,0]),polygon.get([2,0])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,0]),polygon.get([1,0]),polygon.get([2,0])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,0]),polygon.get([1,0]),polygon.get([2,0])));
+    
+    normals.push(new $3Dmol.Vector3(polygon.get([0,1]),polygon.get([1,1]),polygon.get([2,1])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,1]),polygon.get([1,1]),polygon.get([2,1])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,1]),polygon.get([1,1]),polygon.get([2,1])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,1]),polygon.get([1,1]),polygon.get([2,1])));
+    
+    normals.push(new $3Dmol.Vector3(polygon.get([0,2]),polygon.get([1,2]),polygon.get([2,2])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,2]),polygon.get([1,2]),polygon.get([2,2])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,2]),polygon.get([1,2]),polygon.get([2,2])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,2]),polygon.get([1,2]),polygon.get([2,2])));
+    
+    normals.push(new $3Dmol.Vector3(polygon.get([0,3]),polygon.get([1,3]),polygon.get([2,3])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,3]),polygon.get([1,3]),polygon.get([2,3])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,3]),polygon.get([1,3]),polygon.get([2,3])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,3]),polygon.get([1,3]),polygon.get([2,3])));
+    
+    normals.push(new $3Dmol.Vector3(polygon.get([0,4]),polygon.get([1,4]),polygon.get([2,4])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,4]),polygon.get([1,4]),polygon.get([2,4])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,4]),polygon.get([1,4]),polygon.get([2,4])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,4]),polygon.get([1,4]),polygon.get([2,4])));
+    
+    normals.push(new $3Dmol.Vector3(polygon.get([0,5]),polygon.get([1,5]),polygon.get([2,5])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,5]),polygon.get([1,5]),polygon.get([2,5])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,5]),polygon.get([1,5]),polygon.get([2,5])));
+    normals.push(new $3Dmol.Vector3(polygon.get([0,5]),polygon.get([1,5]),polygon.get([2,5])));
+
+/*
+    normals.push(new $3Dmol.Vector3(0,0,-1));
+    normals.push(new $3Dmol.Vector3(0,0,-1));
+    normals.push(new $3Dmol.Vector3(0,0,-1));
+    normals.push(new $3Dmol.Vector3(0,0,-1));
+
+    normals.push(new $3Dmol.Vector3(0,0,1));
+    normals.push(new $3Dmol.Vector3(0,0,1));
+    normals.push(new $3Dmol.Vector3(0,0,1));
+    normals.push(new $3Dmol.Vector3(0,0,1));
+
+    normals.push(new $3Dmol.Vector3(0,-1,0));
+    normals.push(new $3Dmol.Vector3(0,-1,0));
+    normals.push(new $3Dmol.Vector3(0,-1,0));
+    normals.push(new $3Dmol.Vector3(0,-1,0));
+
+    normals.push(new $3Dmol.Vector3(0,1,0));
+    normals.push(new $3Dmol.Vector3(0,1,0));
+    normals.push(new $3Dmol.Vector3(0,1,0));
+    normals.push(new $3Dmol.Vector3(0,1,0));
+    
+    normals.push(new $3Dmol.Vector3(-1,0,0));
+    normals.push(new $3Dmol.Vector3(-1,0,0));
+    normals.push(new $3Dmol.Vector3(-1,0,0));
+    normals.push(new $3Dmol.Vector3(-1,0,0));
+
+    normals.push(new $3Dmol.Vector3(1,0,0));
+    normals.push(new $3Dmol.Vector3(1,0,0));
+    normals.push(new $3Dmol.Vector3(1,0,0));
+    normals.push(new $3Dmol.Vector3(1,0,0));
+*/
+
+    colors.push({r:0,g:0,b:1});
+    colors.push({r:0,g:0,b:1});
+    colors.push({r:0,g:0,b:1});
+    colors.push({r:0,g:0,b:1});
+
+    colors.push({r:0,g:0,b:1});
+    colors.push({r:0,g:0,b:1});
+    colors.push({r:0,g:0,b:1});
+    colors.push({r:0,g:0,b:1});
+
+    colors.push({r:0,g:1,b:0});
+    colors.push({r:0,g:1,b:0});
+    colors.push({r:0,g:1,b:0});
+    colors.push({r:0,g:1,b:0});
+
+    colors.push({r:0,g:1,b:0});
+    colors.push({r:0,g:1,b:0});
+    colors.push({r:0,g:1,b:0});
+    colors.push({r:0,g:1,b:0});
+
+    colors.push({r:1,g:0,b:0});
+    colors.push({r:1,g:0,b:0});
+    colors.push({r:1,g:0,b:0});
+    colors.push({r:1,g:0,b:0});
+
+    colors.push({r:1,g:0,b:0});
+    colors.push({r:1,g:0,b:0});
+    colors.push({r:1,g:0,b:0});
+    colors.push({r:1,g:0,b:0});
+
+    var faces = [  0, 1, 2, 2, 1, 3,
+                   4, 5, 6, 6, 5, 7,
+                   8, 9,10,10, 9,11,
+                  12,13,14,14,13,15,
+                  16,17,18,18,17,19,
+                  20,21,22,22,21,23 ];
+    /* Explination
+    1 3    
+    0 2    
+    ->  normal vector for face(0->1->2): (0,0,-1)
+    ->  light vector: (0,0,1)
+    
+    6 7
+    4 5
+    ->  normal vector for face(4->5->6): (0,0,1)
+    ->  light vector: (0,0,-1)
+    */
+    
+    
+    spec = {vertexArr:vertices, normalArr: normals, faceArr:faces,color:colors,alpha:0.7};
+    var GLS_gridbox = viewer.addCustom(spec);
+    viewer.render();
+    
+    return GLS_gridbox
+}
+function remove_gridbox(viewer, GLS_gridbox) {
+    viewer.removeShape(GLS_gridbox);
+    viewer.render();
+}
+    
+
+function get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z) {
+    var unit_deg = math.pi/180;
+    
+    var gridbox = math.matrix([[-rx,-rx, rx, rx,-rx, rx,-rx, rx],
+                               [-ry, ry,-ry, ry,-ry,-ry, ry, ry],
+                               [-rz,-rz,-rz,-rz, rz, rz, rz, rz]])
+
+    gridbox = rotate_Zaxis(gridbox, unit_deg*deg_z);
+    gridbox = rotate_Yaxis(gridbox, unit_deg*deg_y);
+    gridbox = rotate_Xaxis(gridbox, unit_deg*deg_x);
+
+    var T = math.matrix([[x,x,x,x,x,x,x,x],
+                         [y,y,y,y,y,y,y,y],
+                         [z,z,z,z,z,z,z,z]]);
+    gridbox = math.add(gridbox, T);
+    
+    return gridbox
+}  
+function get_polygon(deg_x, deg_y, deg_z) {
+    var unit_deg = math.pi/180;
+    
+    var polygon = math.matrix([[ 0, 0, 0, 0,-1, 1],
+                               [ 0, 0,-1, 1, 0, 0],
+                               [-1, 1, 0, 0, 0, 0]])
+    
+    polygon = rotate_Zaxis(polygon, unit_deg*deg_z);
+    polygon = rotate_Yaxis(polygon, unit_deg*deg_y);
+    polygon = rotate_Xaxis(polygon, unit_deg*deg_x);
+    
+    return polygon
+}   
+
+function add_gridbox_center(viewer, x, y, z) {
+    var GLS_gridbox_center = 
+    viewer.addSphere({
+        center:{x: x, y: y, z: z},
+        radius: 1.5,
+        color:'white',
+    });
+    
+    viewer.render();
+    return GLS_gridbox_center;
+}
+function remove_gridbox_center(viewer, GLS_gridbox_center) {
+    viewer.removeShape(GLS_gridbox_center);
+    viewer.render();
+}
+    
+function add_proceeding_axis(viewer, x, y, z, length) {
+    var start_x = x;
+    var end_x   = x;
+    var start_y = Math.ceil(y - ((length * 2.0) / 2));
+    var end_y   = Math.ceil(y + ((length * 2.0) / 2));
+    var start_z = z;
+    var end_z   = z;
+
+    var GLS_proceeding_axis = viewer.addCylinder({
+        start: {x: start_x, y: start_y, z: start_z},
+        end:   {x:   end_x, y:   end_y, z:   end_z},
+        radius: 0.2,
+        fromCap: 0,
+        toCap:0,
+        color: 'black',
+    });
+    viewer.render();
+    return GLS_proceeding_axis;
+}
+function add_rotatation_axis(viewer, x, y, z, length, deg_y, deg_z) {
+    var unit_deg = math.pi/180;
+    
+    var half_length = Math.ceil((length * 2.0) / 2);
+    var start_point = math.matrix([[0], [0], [0]]);
+    var end_point   = math.matrix([[half_length], [0], [0]]);
+    
+    end_point = rotate_Zaxis(end_point, unit_deg*deg_z);
+    end_point = rotate_Yaxis(end_point, unit_deg*deg_y);
+
+    var T = math.matrix([[x], [y], [z]]);
+    start_point = math.add(start_point, T);
+    end_point   = math.add(end_point, T);
+    
+    var GLS_rotation_axis = viewer.addArrow({
+        start: {x: start_point._data[0][0], y: start_point._data[1][0], z: start_point._data[2][0]},
+        end:   {x:   end_point._data[0][0], y:   end_point._data[1][0], z:   end_point._data[2][0]},
+        color: 'red',
+        radius: 0.5,
+        radiusRatio: 3.0,
+        mid: 0.8,
+    });
+    
+    viewer.render();
+    return GLS_rotation_axis
+}
+function remove_axis(viewer, GLS_axis) {
+    viewer.removeShape(GLS_axis);
+    viewer.render();
+}
+
+// glviewer render
+function start_viewer() {
+    var glviewer = create_mol_viewer();
+    
+    var pdb_text = $("textarea#mol").val();
+    var GLM_molecule = load_molecule(glviewer, pdb_text);
+    
+    var unit_deg = math.pi/180;
+    var x = parseInt($('#ival-gridbox-center-x').html());
+    var y = parseInt($('#ival-gridbox-center-y').html());
+    var z = parseInt($('#ival-gridbox-center-z').html());
+    var rx = parseInt($('#ival-gridbox-points-x').html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
+    var ry = parseInt($('#ival-gridbox-points-y').html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
+    var rz = parseInt($('#ival-gridbox-points-z').html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
+    var deg_x = 0;
+    var deg_y = parseInt($('#ival-gridbox-rotation-angle').html());
+    var deg_z = parseInt($('#ival-gridbox-tilt-angle').html());
+    
+    var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+    var polygon = get_polygon(deg_x, deg_y, deg_z);
+    var GLS_gridbox = triangle(glviewer, gridbox, polygon);
+    
+    var GLS_gridbox_center;
+    var GLS_proceeding_axis;
+    var GLS_rotation_axis;
+    
+    glviewer.zoomTo({model: GLM_molecule});
+    glviewer.zoom(0.7, 1000);
+    
+    
+    $("textarea#mol").on("contentchange", function() {
+        pdb_text = $(this).val();
+        remove_molecule(glviewer, GLM_molecule);
+        GLM_molecule = load_molecule(glviewer, pdb_text);
+    });
+    
+    $('#ival-gridbox-center-x').on("contentchange", function() {
+        x = parseInt($(this).html());
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+    });
+    $('#ival-gridbox-center-y').on("contentchange", function() {
+        y = parseInt($(this).html());
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+    });
+    $('#ival-gridbox-center-z').on("contentchange", function() {
+        z = parseInt($(this).html());
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+    });
+    $('#knob-gridbox-center-x').mousedown(function() {
+        GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
+        $(document).mousemove(function( event ) {
+            remove_gridbox_center(glviewer, GLS_gridbox_center);
+            GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
+        });
+    });
+    $('#knob-gridbox-center-y').mousedown(function() {
+        GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
+        
+        $(document).mousemove(function( event ) {
+            remove_gridbox_center(glviewer, GLS_gridbox_center);
+            GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
+        });
+    });
+    $('#knob-gridbox-center-z').mousedown(function() {
+        GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
+        
+        $(document).mousemove(function( event ) {
+            remove_gridbox_center(glviewer, GLS_gridbox_center);
+            GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
+        });
+    });
+    
+    $('#ival-gridbox-points-x').on("contentchange", function() {
+        rx = parseInt($(this).html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+    });
+    $('#ival-gridbox-points-y').on("contentchange", function() {
+        ry = parseInt($(this).html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+    });
+    $('#ival-gridbox-points-z').on("contentchange", function() {
+        rz = parseInt($(this).html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+    });
+    $('#ival-gridbox-points-spacing').on("contentchange", function() {
+        rx = parseInt($('#ival-gridbox-points-x').html()) * parseFloat($(this).html()) / 2;
+        ry = parseInt($('#ival-gridbox-points-y').html()) * parseFloat($(this).html()) / 2;
+        rz = parseInt($('#ival-gridbox-points-z').html()) * parseFloat($(this).html()) / 2;
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+    });
+    
+
+    $('#ival-gridbox-rotation-angle').on("contentchange", function() {
+        console.log('aaa');
+        deg_y = parseInt($(this).html());
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+        
+        $('#download-pdb').prop('disabled', true);
+    });
+    $('#ival-gridbox-tilt-angle').on("contentchange", function() {
+        deg_z = parseInt($(this).html());
+        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
+        var polygon = get_polygon(deg_x, deg_y, deg_z);
+        remove_gridbox(glviewer, GLS_gridbox);
+        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+        
+        $('#download-pdb').prop('disabled', true);
+    });
+    
+    $('#knob-gridbox-rotation-angle').mousedown(function() {
+        length = Math.max(rx, ry, rz) * 2;
+        GLS_proceeding_axis = add_proceeding_axis(glviewer, x, y, z, length);
+        
+        $(document).mousemove(function( event ) {
+            remove_axis(glviewer, GLS_rotation_axis);
+            GLS_rotation_axis = add_rotatation_axis(glviewer, x, y, z, length, deg_y, deg_z)
+        });
+    });
+    $('#knob-gridbox-tilt-angle').mousedown(function() {
+        length = Math.max(rx, ry, rz) * 2;
+        GLS_proceeding_axis = add_proceeding_axis(glviewer, x, y, z, length);
+        
+        $(document).mousemove(function( event ) {
+            remove_axis(glviewer, GLS_rotation_axis);
+            GLS_rotation_axis = add_rotatation_axis(glviewer, x, y, z, length, deg_y, deg_z)
+        });
+    });
+    
+    $(document).mouseup(function() {
+        $(document).unbind('mousemove');
+        remove_gridbox_center(glviewer, GLS_gridbox_center);
+        remove_axis(glviewer, GLS_proceeding_axis);
+        remove_axis(glviewer, GLS_rotation_axis);
+    });
+    
+    return glviewer;
+}
+</script>
+</body>
+</html>
