@@ -1,599 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css" integrity="sha256-Q0zCrUs2IfXWYx0uMKJfG93CvF6oVII21waYsAV4/8Q=" crossorigin="anonymous" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" integrity="sha256-ANTwsT2Ffs0EVPyOuss4fxYnCxewzdZeahx93/uLWDM=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" />
+<style>
+.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 <style>
 .document-box {
-    padding-left: 15px;
-    padding-right: 15px;
-    min-width: 925px;
-    max-width: 1300px;
-    margin-top: 1%;
+    padding-top: 0.8em;
+    padding-left: 1em;
+    padding-right: 1em;
+    min-width: 48em;
+    max-width: 88em;
     margin-right: auto;
     margin-left: auto;
 }
-</style>
-<style>
+
 .title-box {
-    background: #C3F4F4;
+    /*background: #C3F4F4;*/
+    background: linear-gradient(to bottom right, #CCFFFF, #BFFFBF);
     padding: 1em 1em;
-    border-radius: 3px;
+    border-radius: 0.2em;
     color: #000000;
 }
-</style>
-<style>
-.set-gridbox-panel {
-    margin: 0 10px 0 0;
-    border: 1px solid transparent;
-    border-color: #FF6347;
-    border-radius: 4px;
-    padding-bottom: 5px;
-}
-.set-gridbox-panel > .heading {
-    color: #FFFAFA;
-    background-color: #FF6347;
-    border-color: #FF6347;
-    padding: 10px 15px;
-    font-size: 20px;
-    font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
-    font-weight: bold;
-}
-.set-gridbox-panel > .body {
-    padding: 15px;
-    overflow: hidden;
+
+.show-table-header {
+    padding: 10px;
+    border-top: 1px solid #DCDCDC;
+    border-bottom: 0 solid #DCDCDC;
+    border-left: 1px solid #DCDCDC;
+    border-right: 1px solid #DCDCDC;
     position: relative;
 }
-.set-gridbox-panel > .body > .gridbox-params {
+.show-table-body {
     padding: 10px;
-    border: 1px solid #DCDCDC;
-    height: 400px;
-    position: relative;'
-</style>
-<style>
-.button-success,
-.button-execute,
-.button-warning {
-    color: white;
-    border-radius: 4px;
-    box-shadow: 0px 0px 1px 2px #DCDCDC;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    width: 150px;
-}
-.button-success:active,
-.button-execute:active,
-.button-warning:active {
-    position:relative;
-    top:1px;
-    background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1)),
-}
-.button-success:focus,
-.button-execute:focus,
-.button-warning:focus {
-    background-image: none;
-}
-    
-.button-success {
-    background: rgb(28, 184, 65); /* this is a green */
+    border-top: 0 solid #DCDCDC;
+    border-bottom: 1px solid #DCDCDC;
+    border-left: 1px solid #DCDCDC;
+    border-right: 1px solid #DCDCDC;
+    max-height: 23.5em;
+    position: relative;
 }
 
-.button-execute {
-    background: rgb(66, 184, 221); /* this is a light blue */
-}
-    
-.button-warning {
-    background: rgb(223, 117, 20); /* this is an orange */
-}
-
-.button-success-disable {
-    background: rgb(146, 220, 164); /* this is an orange */
-}
-</style>
-<style>
 /* for mol-viewer */
 .mol-container {
     position: relative;
-    height: 500px;
-}
-.round-border {
-    border: 4px solid #DCDCDC;
-    border-radius: 10px;
-    box-shadow: 0px 0px 2px 2px #696969;
-}
-</style>
-<style>
-.upload-area {
-    width: 50%;
-    padding: 2px;
-}
-.file-input {
-    border: 2px solid #DAE1FF;
-    padding: 2px;
-}
-.inputBtnSection {
-    border: 2px solid #DAE1FF;
-    padding: 2px;
-    display:inline-block;
-    vertical-align:top;
-    font-family:verdana;
-}
-.inputBtnSection * {
-    box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-}
-.inputBtnSection .fake-file-input {
-    display:inline-block;
-    vertical-align:top;
-    height: 27px;
-    width: 200px;
-    margin: 0;
-    font-size:14px;
-    padding:0 3px;
-}
-.inputBtnSection .fileUpload {
-    position: relative;
-    overflow: hidden;
-    border:solid 1px gray;
-    display:inline-block;
-    vertical-align:top;
-}
-.inputBtnSection .browse-botton {
-    display:inline-block;
-    vertical-align:top;
-    background:rgba(0,0,0,0.5);
-    font-size:14px;
-    padding:0 10px;
-    height:25px;
-    line-height:22px;
-    color:#fff;
-}
-.inputBtnSection .fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
-</style>
-<style>
-.dialog-bubble {
-    bottom: 35px;
-    left: 0;
-    width: 300px;
-    position: absolute;
-    display: none;
-    background-color: white;
-    padding: 15px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-}
-.slide-up {
-    display: block;
-}
-</style>
-<style>
-.apply-area {
-    height: 154px;
-    width: 50%;
-}
-.apply-area .buttom-cabinet {
-    width: 154px;
-    float: left;
-}
-.apply-area .console {
-    height: 128px;
-    width: calc(100% - 180px);
-    min-width: 100px;
-    float: left;
-    padding: 8px;
-    margin: 4px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
+    width: 100%;
+    height: 100%;
+    border: 0.15em solid #DCDCDC;
+    border-radius: 0.65em;
+    box-shadow: 0em 0em 0.15em 0.15em #696969;
 }
 </style>
 </head>
 
-
 <body>
-<div class="document-box">
-    <div class="title-box">
-        <div style="font-size: 200%; font-weight: bold; margin: 10px 0;">AutoBox</div>
-        <div style="overflow-wrap: break-word; margin: 10px 0; font-family: Arial;">Generate a Translated, Rotated Structure and Set a Grid Box Ready for Use in AutoDock and AutoDock Vina.</div>
-    </div>
+    
+<div id="root">
+    <document-box></document-box>
 </div>
     
-<div class="pure-g document-box">
-    <div class="pure-u-1"><div class="pure-g">
-        <div class="pure-u-1-2"><div class="pure-g">
-            <div class="pure-u-1">
-                <div class="set-gridbox-panel">
-                    <div class="heading">Set Grid Box</div>
-                    <div id="set-gridbox-panel-body" class="body">
-                        <div id='set-gridbox-params' class="gridbox-params">
-                            <form class="pure-form pure-form-stacked">
-                                <fieldset>
-                                    <div style="font-size: 120%;">Grid Box Center:</div>
-                                    
-                                    <label for="email">x:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-center-x" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
-                                        <div id="idir-gridbox-center-x" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div id="knob-gridbox-center-x" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                    <label for="email">y:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-center-y" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
-                                        <div id="idir-gridbox-center-y" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div id="knob-gridbox-center-y" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                    <label for="email">z:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-center-z" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
-                                        <div id="idir-gridbox-center-z" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div id="knob-gridbox-center-z" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                </fieldset>
-                                <fieldset>
-                                    <div style="font-size: 120%;">Grid Box Points:</div>
-                                    
-                                    <label for="email">x:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-points-x" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
-                                        <div id="idir-gridbox-points-x" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                    <label for="email">y:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-points-y" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
-                                        <div id="idir-gridbox-points-y" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                    <label for="email">z:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-points-z" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
-                                        <div id="idir-gridbox-points-z" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                    <label for="email">spacing:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-points-spacing" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0.375</div>
-                                        <div id="idir-gridbox-points-spacing" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div style="display: inline-block; vertical-align: bottom;"><input id="knob-third-decima-point" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                </fieldset>
-                                <fieldset>
-                                    <div style="font-size: 120%;">Grid Box Rotation:</div>
-                                    
-                                    <label for="email">rotation angle:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-rotation-angle" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
-                                        <div id="idir-gridbox-rotation-angle" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div id="knob-gridbox-rotation-angle" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                    <label for="email">tilt angle:</label>
-                                    <div style="padding-left: 10px;">
-                                        <div id="ival-gridbox-tilt-angle" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">0</div>
-                                        <div id="idir-gridbox-tilt-angle" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
-                                        <div id="knob-gridbox-tilt-angle" style="display: inline-block; vertical-align: bottom;"><input id="knob" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
-                                    </div>
-                                    
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div></div>
-        <div class="pure-u-1-2">
-            <div class="mol-container round-border">
-                <div id="mol-viewer" style="height: 100%;"></div>
-                <input id="selected-residue" style="display: none;" />
-            </div>
-        </div>
-    </div></div>
-</div>
-    
-<div class="document-box">
-    <div class="upload-area">
-        <button id="upload-action" class="button-execute pure-button">Upload</button>
-        <div class="inputBtnSection">
-            <input id="upload-input" class="fake-file-input" placeholder="Choose File" disabled="disabled" />
-            <label class="fileUpload">
-                <input id="file" type="file" name='file' class="upload" />
-                <span class="browse-botton">Browse...</span>
-            </label>
-        </div>
-    </div>
-    
-    <div class="apply-area">
-        <div class="buttom-cabinet">
-            <div style="padding: 2px;"><button id="apply-action" class="button-warning pure-button">Apply</button></div>
-            <div style="padding: 2px;"><button id="download-pdb" class="button-success pure-button" disabled>Download PDB</button></div>
-            <div style="position: relative; padding: 2px;">
-                <div id="autodock-config-dialog-bubble" class="dialog-bubble"></div>
-                <button id="autodock-config" class="button-success pure-button">AutoDock Config</button>
-            </div>
-            <div style="position: relative; padding: 2px;">
-                <div id="vina-config-dialog-bubble" class="dialog-bubble"></div>
-                <button id="vina-config" class="button-success pure-button">Vina Config</button>
-            </div>
-        </div>
-        <div id="console" class="console">
-            Welcome to AutoBox server! (Upload a pdb structure first...)
-        </div>
-    </div>
-</div>
-
-<textarea style="display: none;" id="mol"></textarea>   
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/js/perfect-scrollbar.jquery.min.js" integrity="sha256-G7x5vTR7iVBtZ10VflIkF/XJzfzAuS0tE6AFIb4d9FQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+<script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.0.1"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/js/perfect-scrollbar.jquery.min.js"></script>
 <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-nojquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.9.1/math.min.js" integrity="sha256-idZIhOSjc6XLASkM1rlo2qEhVdT73C+DwPGcWQ1KlsM=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js" integrity="sha256-2144q+NOM/XU6ZxSqRTJ8P0W/CkY6zXc6mXYt4+mF9s=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/vendor/jquery.ui.widget.min.js" integrity="sha256-PSJreqTN+fSOXC0tOnMm2+LKe92f/Oob0VKfGiCVvkw=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.iframe-transport.min.js" integrity="sha256-k7tuqBGRYeQRrXKq/+wJh2b55o1SuSyXMNEFe8a0ePE=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.fileupload.min.js" integrity="sha256-tcXzqklRDpmITiQ0Ff+S6H2uUQl089oXkEyGjOOGmN4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.7/download.js" integrity="sha256-ABOnKwsYVd1DoQ6h2x/+RNc7ddqtqBBPJDR76/Q6+Zo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.9.1/math.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/vendor/jquery.ui.widget.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.iframe-transport.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.fileupload.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.7/download.js"></script>
 
 <script type="text/javascript">
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
-    
-<script>
-// Add scroll bar
-$(document).ready(function(){
-    $('#set-gridbox-params').perfectScrollbar();
-});
-</script>
-<script>
-// Add click events
-$(document).ready(function(){
-    document.getElementById("file").onchange = function () {
-        document.getElementById("upload-input").value = this.value.replace(/^.*[\\\/]/, '');
-    };
-    
-    $('#file').fileupload({
-        url: $SCRIPT_ROOT + '/upload_protein',
-        sequentialUploads: true,
-        formData: {'aaa': 'bbb'},
-        dataType: 'json',
-        maxNumberOfFiles: 1,
-        add: function (e, data) {
-            `
-            Clear response message if one exists.
-            Remove any hooked click event listeners.
-            Add a new click event listener.
-            `
-            $('#upload-action').off( "click" );
-            $('#upload-action').click(function() {
-                data.submit();
-            });
-        },
-        done: function (e, data) {
-            if (data.result['message'] == 'success') {
-                $("textarea#mol").val(data.result['pdb']);
-                
-                $("#ival-gridbox-center-x").html(data.result['x']);
-                $("#ival-gridbox-center-y").html(data.result['y']);
-                $("#ival-gridbox-center-z").html(data.result['z']);
-                
-                var gridbox_points_x = Math.ceil(data.result['rx'] / $("#ival-gridbox-points-spacing").html());
-                var gridbox_points_y = Math.ceil(data.result['ry'] / $("#ival-gridbox-points-spacing").html());
-                var gridbox_points_z = Math.ceil(data.result['rz'] / $("#ival-gridbox-points-spacing").html());
-                $("#ival-gridbox-points-x").html(gridbox_points_x);
-                $("#ival-gridbox-points-y").html(gridbox_points_y);
-                $("#ival-gridbox-points-z").html(gridbox_points_z);
-                
-                $("#ival-gridbox-rotation-angle").html(data.result['deg_y']);
-                $("#ival-gridbox-tilt-angle").html(data.result['deg_z']);
-                start_viewer();
-                
-                $('#download-pdb').prop('disabled', false);
-                
-                $('#console').html('<div>Protein uploaded! Try turning the knob...</div>' + 
-                                   '<div style="font-size: 80%;">(Note: if the pdb file contains multiple segments, i.e. seperated by "TER", only the first one is parsed.)');
-            }
-            else if (data.result['message'] == 'fail' && data.result['reason'] == 'not a pdb') {
-                $('#console').html('<div>Not a pdb file!</div>');
-            }
-            else if (data.result['message'] == 'fail' && data.result['reason'] == 'file cannot be processed') {
-                $('#console').html('<div>The uploaded file cannot be processed! Check your uploaded file again!</div>');
-            }
-        },
-    });
-    
-    
-    $('#apply-action').click(function() {
-        $.ajax({
-            type: 'POST',
-            url: $SCRIPT_ROOT + '/apply_gridbox',
-            data: {
-                'pdb': $("textarea#mol").val(),
-                
-                'x': $("#ival-gridbox-center-x").html(),
-                'y': $("#ival-gridbox-center-y").html(),
-                'z': $("#ival-gridbox-center-z").html(),
-                
-                'rx': $("#ival-gridbox-points-x").html() * $("#ival-gridbox-points-spacing").html(),
-                'ry': $("#ival-gridbox-points-y").html() * $("#ival-gridbox-points-spacing").html(),
-                'rz': $("#ival-gridbox-points-z").html() * $("#ival-gridbox-points-spacing").html(),
-                
-                'deg_x': 0,
-                'deg_y': $("#ival-gridbox-rotation-angle").html(),
-                'deg_z': $("#ival-gridbox-tilt-angle").html(),
-            },
-            success: function(json_str) {
-                var responses = JSON.parse(json_str);
-                $("textarea#mol").val(responses['pdb']).trigger("contentchange");
-                
-                $("#ival-gridbox-center-x").html(responses['x']).trigger("contentchange");
-                $("#ival-gridbox-center-y").html(responses['y']).trigger("contentchange");
-                $("#ival-gridbox-center-z").html(responses['z']).trigger("contentchange");
-                
-                var gridbox_points_x = Math.ceil(responses['rx'] / $("#ival-gridbox-points-spacing").html());
-                var gridbox_points_y = Math.ceil(responses['ry'] / $("#ival-gridbox-points-spacing").html());
-                var gridbox_points_z = Math.ceil(responses['rz'] / $("#ival-gridbox-points-spacing").html());
-                $("#ival-gridbox-points-x").html(gridbox_points_x).trigger("contentchange");
-                $("#ival-gridbox-points-y").html(gridbox_points_y).trigger("contentchange");
-                $("#ival-gridbox-points-z").html(gridbox_points_z).trigger("contentchange");
-                
-                $("#ival-gridbox-rotation-angle").html(responses['deg_y']).trigger("contentchange");
-                $("#ival-gridbox-tilt-angle").html(responses['deg_z']).trigger("contentchange");
-                
-                $('#download-pdb').prop('disabled', false);
-                $('#console').html('<div>Settings applied!</div>');
-            },
-        });
-    });
-    
-    $('#download-pdb').click(function() {
-        var pdb_text = 'TITLE    AutoBox SERVER, 2017 (' + $SCRIPT_ROOT + ')\n' + $('textarea#mol').val() + '\nEND';
-        download(pdb_text, 'autobox.pdb', "text/plain");
-    });
-    $('#autodock-config').click(function() {
-        var x = $('#ival-gridbox-center-x').html();
-        var y = $('#ival-gridbox-center-y').html();
-        var z = $('#ival-gridbox-center-z').html();
-        var point_x = $('#ival-gridbox-points-x').html();
-        var point_y = $('#ival-gridbox-points-y').html();
-        var point_z = $('#ival-gridbox-points-z').html();
-        var spacing = $('#ival-gridbox-points-spacing').html();
-        var autodock_config = '<div>' + 'gridcenter' + ' ' + x + ' ' + y + ' ' + z + '</div>' +
-                              '<div>' + 'npts' + ' ' + point_x + ' ' + point_y + ' ' + point_z + '</div>' +
-                              '<div>' + 'spacing' + ' ' + spacing + '</div>';
-        $('#console').html(autodock_config);
-    });
-    $('#vina-config').click(function() {
-        var x = $('#ival-gridbox-center-x').html();
-        var y = $('#ival-gridbox-center-y').html();
-        var z = $('#ival-gridbox-center-z').html();
-        var size_x = $('#ival-gridbox-points-x').html() * $('#ival-gridbox-points-spacing').html();
-        var size_y = $('#ival-gridbox-points-y').html() * $('#ival-gridbox-points-spacing').html();
-        var size_z = $('#ival-gridbox-points-z').html() * $('#ival-gridbox-points-spacing').html();
-        var vina_config = '<div>' + 'center_x = ' + x + '</div>' +
-                          '<div>' + 'center_y = ' + y + '</div>' +
-                          '<div>' + 'center_z = ' + z + '</div>' +
-                          '<div>' + 'size_x = ' + size_x + '</div>' +
-                          '<div>' + 'size_y = ' + size_y + '</div>' +
-                          '<div>' + 'size_z = ' + size_z + '</div>';
-        $('#console').html(vina_config);
-    });
-});
-</script>
-<script>
-// define knob behavior
-$(function() {
-    // infinite knob, iPod click wheel
-    var v, up=0, down=0, i=0;
 
-    $("input#knob").knob(
-        {
-            min : 0,
-            max : 20,
-            stopper : false,
-            change : function () {
-                //console.log(this.$div.parent().siblings());
-                var $ival = $(this.$div.parent().siblings()[0]),
-                    $idir = $(this.$div.parent().siblings()[1]).children(),
-                    i = $ival.html(),
-                    incr = function() { i++; $idir.show().html("+").fadeOut(); $ival.html(i).trigger("contentchange"); },
-                    decr = function() { i--; $idir.show().html("-").fadeOut(); $ival.html(i).trigger("contentchange"); };
-               
-                if(v > this.cv){
-                    if(up){
-                        decr();
-                        up=0;
-                    }else{up=1;down=0;}
-                } else {
-                    if(v < this.cv){
-                        if(down){
-                            incr();
-                            down=0;
-                        }else{down=1;up=0;}
-                    }
-                }
-                v = this.cv;
-            },
-        }
-    );
-    
-    $("input#knob-third-decima-point").knob(
-        {
-            min : 0,
-            max : 20,
-            stopper : false,
-            change : function () {
-                //console.log(this.$div.parent().siblings());
-                var $ival = $(this.$div.parent().siblings()[0]),
-                    $idir = $(this.$div.parent().siblings()[1]).children(),
-                    i = parseFloat($ival.html()),
-                    incr = function() { i=(i+0.001).toFixed(3); $idir.show().html("+").fadeOut(); $ival.html(i).trigger("contentchange"); },
-                    decr = function() { i=(i-0.001).toFixed(3); $idir.show().html("-").fadeOut(); $ival.html(i).trigger("contentchange"); };
-               
-                if(v > this.cv){
-                    if(up){
-                        decr();
-                        up=0;
-                    }else{up=1;down=0;}
-                } else {
-                    if(v < this.cv){
-                        if(down){
-                            incr();
-                            down=0;
-                        }else{down=1;up=0;}
-                    }
-                }
-                v = this.cv;
-            },
-        }
-    );
-});
-</script>
-<script>
-//$(document).ready(function() {
-var atomcallback1 = function(atom, viewer) {
-  console.log(atom);
-  atom.clickLabel = viewer.addLabel(atom.elem + atom.serial, {
-                fontSize : 14,
-                position : {
-                    x : atom.x,
-                    y : atom.y,
-                    z : atom.z
-                },
-                backgroundColor: "black"
-            });
-            atom.clicked = true;
-}
-var atomcallback2 = function(atom, viewer) {
-  viewer.removeAllLabels();
-}
-</script>
 <script>
 // for mol-viewer
-function create_mol_viewer() {
-    var element = $('#mol-viewer');
+function create_mol_viewer(element) {
+    var element = $(element);
     var config = { backgroundColor: 'white' };
     var glviewer = $3Dmol.createViewer( element, config );
     
@@ -638,10 +126,14 @@ function create_mol_viewer() {
     });
     
     glviewer.render();
+    
     return glviewer
-};
-</script>
-<script>
+}
+
+function fit_container(glviewer) {
+    $(window).trigger('resize');
+}
+    
 function load_molecule(glviewer, pdb_text) {
     GLM_molecule = glviewer.addModel(pdb_text, "pdb");
     glviewer.setStyle({}, {cartoon: {colorscheme: 'ssJmol'}});
@@ -649,27 +141,15 @@ function load_molecule(glviewer, pdb_text) {
     glviewer.render();
     /*
     setInterval(function() {
-        m.rotate(1);
+        glviewer.rotate(1);
     }, 50);
     */
-    glviewer.setClickable({}, true, function(){
-        console.log(this);
-        //atom.clickLabel = glviewer.addResLabels({resi: atom.resi}, glviewer);
-        glviewer.removeAllLabels();
-        glviewer.addLabel(this.resn + this.resi + ' ' + this.atom, {
-            fontSize : 14,
-            position : {
-              x : this.x,
-              y : this.y,
-              z : this.z
-            },
-            //backgroundColor: "purple",
-        });
-        $('input#selected-residue').val(':' + this.resi);
-    });
+    glviewer.zoomTo({model: GLM_molecule});
+    glviewer.zoom(0.7, 1000);
     
     return GLM_molecule;
 }
+
 function remove_molecule(viewer, GLM_molecule) {
     viewer.removeModel(GLM_molecule);
     viewer.render();
@@ -718,7 +198,7 @@ function rotate_down(gridbox) {
   return new_gridbox;
 }
 
-function triangle(viewer, gridbox, polygon) {
+function add_gridbox(viewer, gridbox, polygon) {
     var vertices = [];
     var normals = [];
     var colors = [];
@@ -956,12 +436,12 @@ function triangle(viewer, gridbox, polygon) {
     
     return GLS_gridbox
 }
+    
 function remove_gridbox(viewer, GLS_gridbox) {
     viewer.removeShape(GLS_gridbox);
     viewer.render();
 }
     
-
 function get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z) {
     var unit_deg = math.pi/180;
     
@@ -979,7 +459,8 @@ function get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z) {
     gridbox = math.add(gridbox, T);
     
     return gridbox
-}  
+}
+    
 function get_polygon(deg_x, deg_y, deg_z) {
     var unit_deg = math.pi/180;
     
@@ -1005,6 +486,7 @@ function add_gridbox_center(viewer, x, y, z) {
     viewer.render();
     return GLS_gridbox_center;
 }
+    
 function remove_gridbox_center(viewer, GLS_gridbox_center) {
     viewer.removeShape(GLS_gridbox_center);
     viewer.render();
@@ -1029,6 +511,7 @@ function add_proceeding_axis(viewer, x, y, z, length) {
     viewer.render();
     return GLS_proceeding_axis;
 }
+    
 function add_rotatation_axis(viewer, x, y, z, length, deg_y, deg_z) {
     var unit_deg = math.pi/180;
     
@@ -1055,172 +538,1798 @@ function add_rotatation_axis(viewer, x, y, z, length, deg_y, deg_z) {
     viewer.render();
     return GLS_rotation_axis
 }
+    
 function remove_axis(viewer, GLS_axis) {
     viewer.removeShape(GLS_axis);
     viewer.render();
 }
+</script>
+    
+<script>
+    
+    const store = new Vuex.Store({
+        
+        state: {
+            
+            pdbContent: null,
+            
+            gridboxCenterX: 0,
+            gridboxCenterY: 0,
+            gridboxCenterZ: 0,
+            
+            gridboxPointsX: 0,
+            gridboxPointsY: 0,
+            gridboxPointsZ: 0,
+            gridboxPointsSpacing: 0.375,
+            
+            gridboxRotateAngle: 0,
+            gridboxTiltAngle: 0,
+            
+        },
+        
+        getters: {
+            
+            pdbContent: state => { return state.pdbContent },
+            
+            gridboxCenterX: state => { return state.gridboxCenterX },
+            gridboxCenterY: state => { return state.gridboxCenterY },
+            gridboxCenterZ: state => { return state.gridboxCenterZ },
+            
+            gridboxPointsX: state => { return state.gridboxPointsX },
+            gridboxPointsY: state => { return state.gridboxPointsY },
+            gridboxPointsZ: state => { return state.gridboxPointsZ },
+            gridboxPointsSpacing: state => { return state.gridboxPointsSpacing },
+            
+            gridboxRotateAngle: state => { return state.gridboxRotateAngle },
+            gridboxTiltAngle: state => { return state.gridboxTiltAngle },
+            
+        },
+        
+        mutations: {
+            
+            pdbContent (state, value) { state.pdbContent = value },
+            
+            gridboxCenterX (state, value) { state.gridboxCenterX = value; },
+            gridboxCenterY (state, value) { state.gridboxCenterY = value; },
+            gridboxCenterZ (state, value) { state.gridboxCenterZ = value; },
+            
+            gridboxPointsX (state, value) { state.gridboxPointsX = value; },
+            gridboxPointsY (state, value) { state.gridboxPointsY = value; },
+            gridboxPointsZ (state, value) { state.gridboxPointsZ = value; },
+            gridboxPointsSpacing (state, value) { state.gridboxPointsSpacing = value; },
+        
+            gridboxRotateAngle (state, value) { state.gridboxRotateAngle = value; },
+            gridboxTiltAngle (state, value) { state.gridboxTiltAngle = value; },
+            
+        },
+        
+        actions: {
+        
+            modifyPdbContent (context, payload) { context.commit('pdbContent', payload.value); },
+        
+            modifyGridboxCenterX (context, payload) { context.commit('gridboxCenterX', payload.value); },
+            modifyGridboxCenterY (context, payload) { context.commit('gridboxCenterY', payload.value); },
+            modifyGridboxCenterZ (context, payload) { context.commit('gridboxCenterZ', payload.value); },
+            
+            modifyGridboxPointsX (context, payload) { context.commit('gridboxPointsX', payload.value); },
+            modifyGridboxPointsY (context, payload) { context.commit('gridboxPointsY', payload.value); },
+            modifyGridboxPointsZ (context, payload) { context.commit('gridboxPointsZ', payload.value); },
+            modifyGridboxPointsSpacing (context, payload) { context.commit('gridboxPointsSpacing', payload.value); },
+                
+            modifyGridboxRotateAngle (context, payload) { context.commit('gridboxRotateAngle',payload.value); },
+            modifyGridboxTiltAngle (context, payload) { context.commit('gridboxTiltAngle', payload.value); },
 
-// glviewer render
-function start_viewer() {
-    var glviewer = create_mol_viewer();
-    
-    var pdb_text = $("textarea#mol").val();
-    var GLM_molecule = load_molecule(glviewer, pdb_text);
-    
-    var unit_deg = math.pi/180;
-    var x = parseInt($('#ival-gridbox-center-x').html());
-    var y = parseInt($('#ival-gridbox-center-y').html());
-    var z = parseInt($('#ival-gridbox-center-z').html());
-    var rx = parseInt($('#ival-gridbox-points-x').html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
-    var ry = parseInt($('#ival-gridbox-points-y').html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
-    var rz = parseInt($('#ival-gridbox-points-z').html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
-    var deg_x = 0;
-    var deg_y = parseInt($('#ival-gridbox-rotation-angle').html());
-    var deg_z = parseInt($('#ival-gridbox-tilt-angle').html());
-    
-    var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-    var polygon = get_polygon(deg_x, deg_y, deg_z);
-    var GLS_gridbox = triangle(glviewer, gridbox, polygon);
-    
-    var GLS_gridbox_center;
-    var GLS_proceeding_axis;
-    var GLS_rotation_axis;
-    
-    glviewer.zoomTo({model: GLM_molecule});
-    glviewer.zoom(0.7, 1000);
-    
-    
-    $("textarea#mol").on("contentchange", function() {
-        pdb_text = $(this).val();
-        remove_molecule(glviewer, GLM_molecule);
-        GLM_molecule = load_molecule(glviewer, pdb_text);
-    });
-    
-    $('#ival-gridbox-center-x').on("contentchange", function() {
-        x = parseInt($(this).html());
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
-    });
-    $('#ival-gridbox-center-y').on("contentchange", function() {
-        y = parseInt($(this).html());
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
-    });
-    $('#ival-gridbox-center-z').on("contentchange", function() {
-        z = parseInt($(this).html());
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
-    });
-    $('#knob-gridbox-center-x').mousedown(function() {
-        GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
-        $(document).mousemove(function( event ) {
-            remove_gridbox_center(glviewer, GLS_gridbox_center);
-            GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
-        });
-    });
-    $('#knob-gridbox-center-y').mousedown(function() {
-        GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
+        },
         
-        $(document).mousemove(function( event ) {
-            remove_gridbox_center(glviewer, GLS_gridbox_center);
-            GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
-        });
-    });
-    $('#knob-gridbox-center-z').mousedown(function() {
-        GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
+    })
+    
+    window.Event = new Vue();
+    
+    Vue.component('header-box', {
         
-        $(document).mousemove(function( event ) {
-            remove_gridbox_center(glviewer, GLS_gridbox_center);
-            GLS_gridbox_center = add_gridbox_center(glviewer, x, y, z);
-        });
-    });
+        template: `
+            <div class="title-box">
+                <div style="font-size: 200%; font-weight: bold; margin: 10px 0;">AutoBox</div>
+                <div style="overflow-wrap: break-word; margin: 10px 0; font-family: Arial;">Generate a Translated, Rotated Structure and Set a Grid Box Ready for Use in AutoDock and AutoDock Vina.</div>
+            </div>
+        `,
+                 
+    })
     
-    $('#ival-gridbox-points-x').on("contentchange", function() {
-        rx = parseInt($(this).html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
-    });
-    $('#ival-gridbox-points-y').on("contentchange", function() {
-        ry = parseInt($(this).html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
-    });
-    $('#ival-gridbox-points-z').on("contentchange", function() {
-        rz = parseInt($(this).html()) * parseFloat($('#ival-gridbox-points-spacing').html()) / 2;
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
-    });
-    $('#ival-gridbox-points-spacing').on("contentchange", function() {
-        rx = parseInt($('#ival-gridbox-points-x').html()) * parseFloat($(this).html()) / 2;
-        ry = parseInt($('#ival-gridbox-points-y').html()) * parseFloat($(this).html()) / 2;
-        rz = parseInt($('#ival-gridbox-points-z').html()) * parseFloat($(this).html()) / 2;
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
-    });
+    Vue.component('navbar-box', {
+        
+        template: `
+            <div class="tabs">
+                <ul>
+                    <li :class="{ 'is-active': show.New }"       @click="clickNew"><a :href="href(name.New)">New</a></li>
+                    <li :class="{ 'is-active': show.GridBox }"   @click="clickGridBox"><a :href="href(name.GridBox)">Grid Box</a></li>
+                    <li :class="{ 'is-active': show.Configure }" @click="clickConfigure"><a :href="href(name.Configure)">Configure</a></li>
+                    <li :class="{ 'is-active': show.Download }"  @click="clickDownload"><a :href="href(name.Download)">Download</a></li>
+                    <li :class="{ 'is-active': show.Show }"      @click="clickShow"><a :href="href(name.Show)">Show</a></li>
+                </ul>
+            </div>
+        `,
+        
+        data: function() {
+            return {
+                
+                name: {
+                    New: 'New',
+                    GridBox: 'GridBox',
+                    Configure: 'Configure',
+                    Download: 'Download',
+                    Show: 'Show',
+                },
+                
+                show: {
+                    New: true,
+                    GridBox: false,
+                    Configure: false,
+                    Download: false,
+                    Show: false,
+                },
+                
+            }
+        },
+        
+        methods: {
+            
+            href(name) {
+                return '#' + name.toLowerCase().replace(/ /g, '-');
+            },
+            
+            hideAll() {
+                for(key in this.show){ this.show[key] = false; }
+            },
+            
+            showNew() {
+                this.hideAll();
+                this.show.New = true;
+            },
+            
+            showGridBox() {
+                this.hideAll();
+                this.show.GridBox = true;
+            },
+            
+            showConfigure() {
+                this.hideAll();
+                this.show.Configure = true;
+            },
+            
+            showDownload() {
+                this.hideAll();
+                this.show.Download = true;
+            },
+            
+            showShow() {
+                this.hideAll();
+                this.show.Show = true;
+            },
+            
+            clickNew() {
+                this.showNew();
+                Event.$emit('hide gridbox');
+                Event.$emit('hide viewer');
+                Event.$emit('hide configure');
+                Event.$emit('hide download');
+                Event.$emit('hide show');
+                Event.$emit('show new');
+                Event.$emit('show illustration');
+            },
+            
+            clickGridBox() {
+                this.showGridBox();
+                Event.$emit('hide new');
+                Event.$emit('hide illustration');
+                Event.$emit('hide configure');
+                Event.$emit('hide download');
+                Event.$emit('hide show');
+                Event.$emit('show gridbox');
+                Event.$emit('show viewer');
+            },
+            
+            clickConfigure() {
+                this.showConfigure();
+                Event.$emit('hide new');
+                Event.$emit('hide illustration');
+                Event.$emit('hide gridbox');
+                Event.$emit('hide download');
+                Event.$emit('hide show');
+                Event.$emit('show configure');
+                Event.$emit('show viewer');
+            },
+            
+            clickDownload() {
+                this.showDownload();
+                Event.$emit('hide new');
+                Event.$emit('hide illustration');
+                Event.$emit('hide gridbox');
+                Event.$emit('hide configure');
+                Event.$emit('hide show');
+                Event.$emit('show download');
+                Event.$emit('show viewer');
+            },
+            
+            clickShow() {
+                this.showShow();
+                Event.$emit('hide new');
+                Event.$emit('hide illustration');
+                Event.$emit('hide gridbox');
+                Event.$emit('hide configure');
+                Event.$emit('hide download');
+                Event.$emit('show show');
+                Event.$emit('show viewer');
+            },
+        },
+        
+        created() {
+        
+            Event.$on('show gridbox', () => {
+                this.showGridBox();
+            });
     
+        },
+        
+    })
+    
+    Vue.component('new-structure', {
+        
+        delimiters: ["[[", "]]"],
+        
+        template: `
+            <div :style="{ display: display }">
+                <header class="card-header">
+                    <p class="card-header-title">New Structure</p>
+                </header>
+                
+                <div class="card-content" style="padding: 7.5em 0;">
+                    
+                    <div class="field">
+                        <div class="file is-centered is-boxed is-large is-success has-name">
+                          <label class="file-label">
+                            <input class="file-input" type="file" ref="fileInput" @change="onFileChange">
+                            <input type="file" name="file" style="display: none;" ref="fileUpload">
+                            <span class="file-cta">
+                              <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                              </span>
+                              <span class="file-label">
+                                Choose a Structure…
+                              </span>
+                            </span>
+                            <span class="file-name">
+                                [[selectedFileName]]
+                            </span>
+                          </label>
+                        </div>
+                    </div>
+                    
+                    <div class="buttons is-centered is-marginless">
+                        <a class="button is-primary is-outlined is-medium" ref="uploadButton">Upload!</a>
+                    </div>
+                    
+                    <article class="message is-danger is-marginless" :style="{ 'display': displayErrorMsg }">
+                        <div class="message-header is-warning" style="float: left; left: 50%; transform: translateX(-50%);">
+                            <p>[[message]]</p>
+                        </div>
+                    </article>
+    
+                    
+                    <article class="message is-warning is-marginless" :style="{ 'display': displayWarningMsg }">
+                        <div class="message-header is-warning" style="float: left; left: 50%; transform: translateX(-50%);">
+                            <p>[[message]]</p>
+                        </div>
+                    </article>
+                    
+                    
+                    <article class="message is-success is-marginless" :style="{ 'display': displaySuccessMsg }">
+                        <div class="message-header is-warning" style="float: left; left: 50%; transform: translateX(-50%);">
+                            <p>[[message]]</p>
+                        </div>
+                    </article>
+                    
+    
+                </div>
+            </div>
+        `,
+        
+        data: function() {
+            return {
+                
+                display: null,
+                
+                files: null,
+                
+                message: null,
+                
+                show: {
+                    errorMsg: false,
+                    warningMsg: false,
+                    successMsg: false,
+                },
+                
+            }
+        },
+        
+        computed: {
+          
+            selectedFileName() {
+                if (this.files) return this.files.get('file').name.replace(/^.*[\\\/]/, '');
+            },
+            
+            displayErrorMsg() { return this.displayEncoder(this.show.errorMsg) },
+            
+            displayWarningMsg() { return this.displayEncoder(this.show.warningMsg) },
+            
+            displaySuccessMsg() { return this.displayEncoder(this.show.successMsg) },
+            
+        },
+        
+        methods: {
+            
+            hideAllMsg() {
+                
+                this.show.errorMsg = false;
+                this.show.warningMsg = false;
+                this.show.successMsg = false;
+                this.message = null;
+                
+            },
+            
+            onFileChange() {
+                
+                this.hideAllMsg();
+                    
+                const files = this.$refs.fileInput.files;
+                
+                
+                if (files.length === 0) {
+                    
+                    return null;
+                
+                } else if (files[0].name.split('.').pop() !== 'pdb') {
+                    
+                    this.files = null;
+                    
+                    _.delay( () => {
+                        this.message = 'Not a pdb file!';
+                        this.show.errorMsg = true;
+                    }, 100);
+                    
+                } else {
+                    
+                    this.files = new FormData();
+                    this.files.append('file', files[0]);
+                    $(this.$refs.fileUpload).fileupload('add', { files: this.files.get('file') });
+                    
+                }
+                
+            },
+            
+            displayEncoder(boolean) {
+                if (boolean) {
+                    return null;
+                } else {
+                    return 'none';
+                }
+            },
+            
+        },
+        
+        created() {
+            
+            Event.$on('show new', () => {
+                this.display = null;
+            });
+            
+            Event.$on('hide new', () => {
+                this.display = 'none';
+            });
+        
+        },
+        
+        mounted() {
+            
+            $(this.$refs.fileUpload).fileupload({
+                // https://github.com/blueimp/jQuery-File-Upload/wiki/API
+                // https://github.com/blueimp/jQuery-File-Upload/wiki/Options
+                // https://stackoverflow.com/a/16047861
+                
+                url: $SCRIPT_ROOT + '/upload_protein',
+                formData: {'dummy': 'dummy'},
+                dataType: 'json',
+                sequentialUploads: true,
+                maxNumberOfFiles: 1,
+                autoUpload: false,
+                add: function (e, data) {
+                    `
+                    //Clear response message if one exists.
+                    Remove any hooked click event listeners.
+                    Add a new click event listener.
+                    `
+                    $(this.$refs.uploadButton).off( "click" );
+                    $(this.$refs.uploadButton).click(
+                        
+                        _.debounce(function() {
+                            
+                            //alert(this.files.get('file'));
+                            data.files = [this.files.get('file')];
+                            data.submit();
+                        
+                            this.hideAllMsg();
+                            this.message = 'Processing...';
+                            this.show.warningMsg = true;
+                        
+                        }.bind(this), 1000, {
+                            'leading': true,
+                            'trailing': false
+                        })
+                        
+                    );
+                }.bind(this),
+                done: function (e, data) {
+                    if (data.result['message'] == 'success') {
+                        
+                        //alert(data.result['message']);
+                        this.hideAllMsg();
+                        _.delay( () => {
+                            this.message = 'Success!';
+                            this.show.successMsg = true;
+                        }, 100);
+                        
+                        store.dispatch('modifyPdbContent', { 'value': data.result['pdb'] });
+                        
+                        store.dispatch('modifyGridboxCenterX', { 'value': data.result['x'] });
+                        store.dispatch('modifyGridboxCenterY', { 'value': data.result['y'] });
+                        store.dispatch('modifyGridboxCenterZ', { 'value': data.result['z'] });
+                        
+                        var gridbox_points_x = Math.ceil(data.result['rx'] / store.getters.gridboxPointsSpacing);
+                        var gridbox_points_y = Math.ceil(data.result['ry'] / store.getters.gridboxPointsSpacing);
+                        var gridbox_points_z = Math.ceil(data.result['rz'] / store.getters.gridboxPointsSpacing);
+                        store.dispatch('modifyGridboxPointsX', { 'value': gridbox_points_x });
+                        store.dispatch('modifyGridboxPointsY', { 'value': gridbox_points_y });
+                        store.dispatch('modifyGridboxPointsZ', { 'value': gridbox_points_z });
+                        store.dispatch('modifyGridboxPointsSpacing', { 'value': 0.375 });
+                        
+                        store.dispatch('modifyGridboxRotateAngle', { 'value': data.result['deg_y'] });
+                        store.dispatch('modifyGridboxTiltAngle', { 'value': data.result['deg_z'] });
+                        
+                        _.delay( () => {
+                            Event.$emit('hide new');
+                            Event.$emit('hide illustration');
+                            Event.$emit('show gridbox');
+                            Event.$emit('show viewer');
+                            //this.hideAllMsg();
+                        }, 800);
 
-    $('#ival-gridbox-rotation-angle').on("contentchange", function() {
-        console.log('aaa');
-        deg_y = parseInt($(this).html());
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
+                    } else if (data.result['message'] == 'fail' && data.result['reason'] == 'not a pdb') {
+                        
+                        this.hideAllMsg();
+                        _.delay( () => {
+                            this.message = 'Not a pdb file!';
+                            this.show.errorMsg = true;
+                        }, 100);
+                        
+                    } else if (data.result['message'] == 'fail' && data.result['reason'] == 'file cannot be processed') {
+                        
+                        this.hideAllMsg();
+                        _.delay( () => {
+                            this.message = "This file cannot be successfully processed!";
+                            this.show.errorMsg = true;
+                        }, 100);
+                     //Don't hurry! Browse and select a pdb file first!   
+                    }
+                }.bind(this),
+            });
+            
+        },
         
-        $('#download-pdb').prop('disabled', true);
-    });
-    $('#ival-gridbox-tilt-angle').on("contentchange", function() {
-        deg_z = parseInt($(this).html());
-        var gridbox = get_gridbox(x, y, z, rx, ry, rz, deg_x, deg_y, deg_z);
-        var polygon = get_polygon(deg_x, deg_y, deg_z);
-        remove_gridbox(glviewer, GLS_gridbox);
-        GLS_gridbox = triangle(glviewer, gridbox, polygon);
-        
-        $('#download-pdb').prop('disabled', true);
-    });
+    })
     
-    $('#knob-gridbox-rotation-angle').mousedown(function() {
-        length = Math.max(rx, ry, rz) * 2;
-        GLS_proceeding_axis = add_proceeding_axis(glviewer, x, y, z, length);
+    Vue.component('grid-box', {
         
-        $(document).mousemove(function( event ) {
-            remove_axis(glviewer, GLS_rotation_axis);
-            GLS_rotation_axis = add_rotatation_axis(glviewer, x, y, z, length, deg_y, deg_z)
-        });
-    });
-    $('#knob-gridbox-tilt-angle').mousedown(function() {
-        length = Math.max(rx, ry, rz) * 2;
-        GLS_proceeding_axis = add_proceeding_axis(glviewer, x, y, z, length);
+        delimiters: ["[[", "]]"],
+    
+        template: `
+            <div :style="{ display: display }">
+
+                <header class="card-header">
+                    <p class="card-header-title">Grid Box</p>
+                    <div class="tabs is-toggle is-small" style="padding: 0em 1em;">
+                        <ul>
+                            <li :class="{ 'is-active': show.Center }" @click="clickCenter">
+                              <a><span>Center</span></a>
+                            </li>
+                            <li :class="{ 'is-active': show.Points }" @click="clickPoints">
+                              <a><span>Points</span></a>
+                            </li>
+                            <li :class="{ 'is-active': show.Rotate }" @click="clickRotate">
+                              <a><span>Rotate</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+    
+                <div class="card-content">
+                        
+                    <div class="box has-text-weight-semibold is-capitalized is-marginless" style="height: 27.2em;" :style="{ 'display': displayPanelCenter }">
+                        x:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-center-x" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxCenterX]]</div>
+                            <div id="idir-gridbox-center-x" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div ref="knobGridboxCenterXContainer" style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxCenterX" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                        
+                        y:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-center-y" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxCenterY]]</div>
+                            <div id="idir-gridbox-center-y" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div ref="knobGridboxCenterYContainer" style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxCenterY" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                        
+                        z:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-center-z" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxCenterZ]]</div>
+                            <div id="idir-gridbox-center-z" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div ref="knobGridboxCenterZContainer" style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxCenterZ" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="box has-text-weight-semibold is-capitalized is-marginless" style="height: 27.2em;" :style="{ 'display': displayPanelPoints }">
+                        x:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-points-x" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxPointsX]]</div>
+                            <div id="idir-gridbox-points-x" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxPointsX" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                        
+                        y:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-points-y" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxPointsY]]</div>
+                            <div id="idir-gridbox-points-y" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxPointsY" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                        
+                        z:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-points-z" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxPointsZ]]</div>
+                            <div id="idir-gridbox-points-z" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxPointsZ" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                        
+                        spacing:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-points-spacing" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxPointsSpacing]]</div>
+                            <div id="idir-gridbox-points-spacing" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxPointsSpacing" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                    </div>
+                        
+                    <div class="box has-text-weight-semibold is-capitalized is-marginless" style="height: 27.2em;" :style="{ 'display': displayPanelRotate }">
+                        rotate angle:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-rotation-angle" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxRotateAngle]]</div>
+                            <div id="idir-gridbox-rotation-angle" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div ref="knobGridboxRotateAngleContainer" style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxRotateAngle" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                        
+                        tilt angle:
+                        <div style="padding-left: 10px;">
+                            <div id="ival-gridbox-tilt-angle" style="display: inline-block; width: 120px; text-align:right; font-size:50px; color:#AAA">[[ivalGridboxTiltAngle]]</div>
+                            <div id="idir-gridbox-tilt-angle" style="display: inline-block; width: 50px;"><div style="display: inline-block; width: 50px; text-align: center; font-size: 30px; display: none;">+</div></div>
+                            <div ref="knobGridboxTiltAngleContainer" style="display: inline-block; vertical-align: bottom;"><input ref="knobGridboxTiltAngle" value="0" data-width="50" data-height="50" data-thickness=".5" data-fgcolor="#AAAAAA" data-bgcolor="#F0F0F0" data-displayinput="false" data-cursor="true" style="display: none; width: 0px; visibility: hidden;"></div>
+                        </div>
+                        
+                        <div style="position: relative;">
+                            <a class="button is-danger is-medium" style="margin-top: 2em; float: left;" @click="apply">Apply</a>
+                            
+                            <div style="float: left;">
+                                <article class="message is-warning is-marginless"
+                                         style="padding-left: 0.5em; position: absolute; bottom: 0;"
+                                         :style="{ 'display': displayApplyWarningMsg }">
+                                    <div class="message-header is-warning">
+                                        <p>[[applyMessage]]</p>
+                                    </div>
+                                </article>
+                                
+                                <article class="message is-success is-marginless"
+                                         style="padding-left: 0.5em; position: absolute; bottom: 0;"
+                                         :style="{ 'display': displayApplySuccessMsg }">
+                                    <div class="message-header is-warning" style="float: left;">
+                                        <p>[[applyMessage]]</p>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div style="clear: left;"></div>
+                        </div>
+                        
+                    </div>
+    
+                </div>
+
+            </div>
+        `,
         
-        $(document).mousemove(function( event ) {
-            remove_axis(glviewer, GLS_rotation_axis);
-            GLS_rotation_axis = add_rotatation_axis(glviewer, x, y, z, length, deg_y, deg_z)
-        });
-    });
+        data: function() {
+            return {
+                
+                display: 'none',
+                
+                show: {
+                    Center: true,
+                    Points: false,
+                    Rotate: false,
+                },
+                
+                applyMessage: null,
+                
+                applyShow: {
+                    
+                    warningMsg: false,
+                    successMsg: false,
+                    
+                },
+                
+            }
+        },
+        
+        computed: {
+            
+            displayPanelCenter() { return this.displayEncoder(this.show.Center) },
+            
+            displayPanelPoints() { return this.displayEncoder(this.show.Points) },
+        
+            displayPanelRotate() { return this.displayEncoder(this.show.Rotate) },
+            
+            ivalGridboxCenterX() { return store.getters.gridboxCenterX; },
+            ivalGridboxCenterY() { return store.getters.gridboxCenterY; },
+            ivalGridboxCenterZ() { return store.getters.gridboxCenterZ; },
+            
+            ivalGridboxPointsX() { return store.getters.gridboxPointsX; },
+            ivalGridboxPointsY() { return store.getters.gridboxPointsY; },
+            ivalGridboxPointsZ() { return store.getters.gridboxPointsZ; },
+            ivalGridboxPointsSpacing() { return store.getters.gridboxPointsSpacing; },
+            
+            ivalGridboxRotateAngle() { return store.getters.gridboxRotateAngle; },
+            ivalGridboxTiltAngle() { return store.getters.gridboxTiltAngle; },
+            
+            displayApplyWarningMsg() { return this.displayEncoder(this.applyShow.warningMsg) },
+            displayApplySuccessMsg() { return this.displayEncoder(this.applyShow.successMsg) },
+            
+        },
+        
+        methods: {
+            
+            hideAll() {
+                for(key in this.show){ this.show[key] = false; }
+            },
+            
+            showCenter() {
+                this.hideAll();
+                this.show.Center = true;
+            },
+            
+            showPoints() {
+                this.hideAll();
+                this.show.Points = true;
+            },
+            
+            showRotate() {
+                this.hideAll();
+                this.show.Rotate = true;
+            },
+            
+            clickCenter() {
+                this.showCenter();
+            },
+            
+            clickPoints() {
+                this.showPoints();
+            },
+            
+            clickRotate() {
+                this.showRotate();
+            },
+                
+            displayEncoder(boolean) {
+                if (boolean) {
+                    return null;
+                } else {
+                    return 'none';
+                }
+            },
+            
+            knob (element, getterName, dispatchName) {
+            
+                // infinite knob, iPod click wheel
+                var v, up=0, down=0, i=0;
+            
+                $(element).knob(
+                    {
+                        min : 0,
+                        max : 20,
+                        stopper : false,
+                        change : function () {
+                            //console.log(this.$div.parent().siblings());
+                            //var $ival = $(this.$div.parent().siblings()[0]);
+                            var $idir = $(this.$div.parent().siblings()[1]).children(),
+                                i = store.getters[getterName],
+                                
+                                incr = function() {
+                                    i++;
+                                    $idir.show().html("+").fadeOut();
+                                    store.dispatch(dispatchName, { 'value': i });
+                                },
+                                
+                                decr = function() {
+                                    i--;
+                                    $idir.show().html("-").fadeOut();
+                                    store.dispatch(dispatchName, { 'value': i });
+                                };
+                           
+                            if(v > this.cv){
+                                if(up){
+                                    decr();
+                                    up=0;
+                                }else{up=1;down=0;}
+                            } else {
+                                if(v < this.cv){
+                                    if(down){
+                                        incr();
+                                        down=0;
+                                    }else{down=1;up=0;}
+                                }
+                            }
+                            v = this.cv;
+                        },
+                    }
+                );
+            
+            },
+            
+            knobThirdDecimaPoint(element, getterName, dispatchName) {
+                
+                // infinite knob, iPod click wheel
+                var v, up=0, down=0, i=0;
+            
+                $(element).knob(
+                    {
+                        min : 0,
+                        max : 20,
+                        stopper : false,
+                        change : function () {
+                            //console.log(this.$div.parent().siblings());
+                            //var $ival = $(this.$div.parent().siblings()[0]);
+                            var $idir = $(this.$div.parent().siblings()[1]).children(),
+                                i = parseFloat(store.getters[getterName]),
+                                
+                                incr = function() {
+                                    i=(i+0.001).toFixed(3);
+                                    $idir.show().html("+").fadeOut();
+                                    store.dispatch(dispatchName, { 'value': i });
+                                },
+                                
+                                decr = function() { 
+                                    i=(i-0.001).toFixed(3);
+                                    $idir.show().html("-").fadeOut();
+                                    store.dispatch(dispatchName, { 'value': i });
+                                };
+                           
+                            if(v > this.cv){
+                                if(up){
+                                    decr();
+                                    up=0;
+                                }else{up=1;down=0;}
+                            } else {
+                                if(v < this.cv){
+                                    if(down){
+                                        incr();
+                                        down=0;
+                                    }else{down=1;up=0;}
+                                }
+                            }
+                            v = this.cv;
+                        },
+                    }
+                );
+            },
+            
+            hideAllApplyMsg() {
+                
+                this.applyShow.warningMsg = false;
+                this.applyShow.successMsg = false;
+                this.applyMessage = null;
+                
+            },
+            
+            getApplyGridboxConfig() {
+                
+                var pdb = store.getters.pdbContent;
+                
+                var x = parseInt(store.getters.gridboxCenterX);
+                var y = parseInt(store.getters.gridboxCenterY);
+                var z = parseInt(store.getters.gridboxCenterZ);
+                
+                var rx = parseInt(store.getters.gridboxPointsX) * parseFloat(store.getters.gridboxPointsSpacing);
+                var ry = parseInt(store.getters.gridboxPointsY) * parseFloat(store.getters.gridboxPointsSpacing);
+                var rz = parseInt(store.getters.gridboxPointsZ) * parseFloat(store.getters.gridboxPointsSpacing);
+                
+                var deg_x = 0;
+                var deg_y = parseInt(store.getters.gridboxRotateAngle);
+                var deg_z = parseInt(store.getters.gridboxTiltAngle);
+                
+                return { 'pdb': pdb, 'x': x, 'y': y, 'z': z, 'rx': rx, 'ry': ry, 'rz': rz,
+                         'deg_x': deg_x, 'deg_y': deg_y, 'deg_z': deg_z }
+                
+            },
+            
+            applyGridboxConfig(gridboxConfig) {
+                
+                store.dispatch('modifyPdbContent', { 'value': gridboxConfig['pdb'] });
+                        
+                store.dispatch('modifyGridboxCenterX', { 'value': gridboxConfig['x'] });
+                store.dispatch('modifyGridboxCenterY', { 'value': gridboxConfig['y'] });
+                store.dispatch('modifyGridboxCenterZ', { 'value': gridboxConfig['z'] });
+                
+                var gridbox_points_x = Math.ceil(gridboxConfig['rx'] / store.getters.gridboxPointsSpacing);
+                var gridbox_points_y = Math.ceil(gridboxConfig['ry'] / store.getters.gridboxPointsSpacing);
+                var gridbox_points_z = Math.ceil(gridboxConfig['rz'] / store.getters.gridboxPointsSpacing);
+                store.dispatch('modifyGridboxPointsX', { 'value': gridbox_points_x });
+                store.dispatch('modifyGridboxPointsY', { 'value': gridbox_points_y });
+                store.dispatch('modifyGridboxPointsZ', { 'value': gridbox_points_z });
+                store.dispatch('modifyGridboxPointsSpacing', { 'value': 0.375 });
+                
+                store.dispatch('modifyGridboxRotateAngle', { 'value': gridboxConfig['deg_y'] });
+                store.dispatch('modifyGridboxTiltAngle', { 'value': gridboxConfig['deg_z'] });
+                
+            },
+            
+            apply() {
+                
+                this.hideAllApplyMsg();
+                this.applyMessage = 'Processing...';
+                this.applyShow.warningMsg = true;
+                
+                var ApplyGridboxConfig = this.getApplyGridboxConfig();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: $SCRIPT_ROOT + '/apply_gridbox',
+                    data: ApplyGridboxConfig,
+                    success: function(json_str) {
+                        //console.log('apply');
+                        //console.log(json_str);
+                        var responses = JSON.parse(json_str);
+                        this.applyGridboxConfig(responses);
+                        
+                        this.hideAllApplyMsg();
+                        this.applyMessage = 'Apply!';
+                        this.applyShow.successMsg = true;
+                        
+                        _.delay( () => {
+                            this.hideAllApplyMsg();
+                        }, 500);
+                        
+                    }.bind(this),
+                });
+            },
+            
+        },
+        
+        created() {
+            
+            Event.$on('show gridbox', () => {
+                this.display = null;
+            })
+            
+            Event.$on('hide gridbox', () => {
+                this.display = 'none';
+            })
+            
+        },
+        
+        mounted() {
+            
+            this.knob(this.$refs.knobGridboxCenterX, 'gridboxCenterX', 'modifyGridboxCenterX');
+            this.knob(this.$refs.knobGridboxCenterY, 'gridboxCenterY', 'modifyGridboxCenterY');
+            this.knob(this.$refs.knobGridboxCenterZ, 'gridboxCenterZ', 'modifyGridboxCenterZ');
+            
+            this.knob(this.$refs.knobGridboxPointsX, 'gridboxPointsX', 'modifyGridboxPointsX');
+            this.knob(this.$refs.knobGridboxPointsY, 'gridboxPointsY', 'modifyGridboxPointsY');
+            this.knob(this.$refs.knobGridboxPointsZ, 'gridboxPointsZ', 'modifyGridboxPointsZ');
+            this.knobThirdDecimaPoint(this.$refs.knobGridboxPointsSpacing, 'gridboxPointsSpacing', 'modifyGridboxPointsSpacing');
+            
+            this.knob(this.$refs.knobGridboxRotateAngle, 'gridboxRotateAngle', 'modifyGridboxRotateAngle');
+            this.knob(this.$refs.knobGridboxTiltAngle, 'gridboxTiltAngle', 'modifyGridboxTiltAngle');
+            
+            $(this.$refs.knobGridboxRotateAngleContainer).mousedown(function() {    
+                Event.$emit('mousedown knobGridboxRotateAngleContainer');
+            });
+            
+            $(this.$refs.knobGridboxTiltAngleContainer).mousedown(function() {    
+                Event.$emit('mousedown knobGridboxTiltAngleContainer');
+            });
+            
+            $(this.$refs.knobGridboxCenterXContainer).mousedown(function() {    
+                Event.$emit('mousedown knobGridboxCenterXContainer');
+            });
+            
+            $(this.$refs.knobGridboxCenterYContainer).mousedown(function() {    
+                Event.$emit('mousedown knobGridboxCenterYContainer');
+            });
+            
+            $(this.$refs.knobGridboxCenterZContainer).mousedown(function() {    
+                Event.$emit('mousedown knobGridboxCenterZContainer');
+            });
+            
+        },
     
-    $(document).mouseup(function() {
-        $(document).unbind('mousemove');
-        remove_gridbox_center(glviewer, GLS_gridbox_center);
-        remove_axis(glviewer, GLS_proceeding_axis);
-        remove_axis(glviewer, GLS_rotation_axis);
-    });
+    })
     
-    return glviewer;
-}
+    Vue.component('configure', {
+        
+        delimiters: ["[[", "]]"],
+        
+        template: `
+            <div :style="{ display: display }">
+                <header class="card-header">
+                    <p class="card-header-title">Configure</p>
+                </header>
+                
+                <div class="card-content">
+                  <div class="content has-text-weight-semibold">
+                      <span class="tag is-primary is-medium">AutoDock</span>
+                      <blockquote>
+                          <dt>gridcenter [[autoboxCenterX]] [[autoboxCenterY]] [[autoboxCenterZ]]</dt>
+                          <dt>npts [[autoboxPointsX]] [[autoboxPointsY]] [[autoboxPointsZ]]</dt>
+                          <dt>spacing [[autoboxPointsSpacing]]</dt>
+                      </blockquote>
+                      <span class="tag is-danger is-medium">Vina</span>
+                      <blockquote>
+                          <dt>center_x = [[vinaCenterX]]</dt>
+                          <dt>center_y = [[vinaCenterY]]</dt>
+                          <dt>center_z = [[vinaCenterZ]]</dt>
+                          <dt>size_x = [[vinaSizeX]]</dt>
+                          <dt>size_y = [[vinaSizeY]]</dt>
+                          <dt>size_z = [[vinaSizeZ]]</dt>
+                      </blockquote>
+                  </div>
+                </div>
+            </div>
+        `,
+        
+        data: function() {
+            return {
+                display: 'none',
+            }
+        },
+        
+        computed: {
+            
+            autoboxCenterX() { return store.getters.gridboxCenterX; },
+            autoboxCenterY() { return store.getters.gridboxCenterY; },
+            autoboxCenterZ() { return store.getters.gridboxCenterZ; },
+            
+            autoboxPointsX() { return store.getters.gridboxPointsX; },
+            autoboxPointsY() { return store.getters.gridboxPointsY; },
+            autoboxPointsZ() { return store.getters.gridboxPointsZ; },
+            autoboxPointsSpacing() { return store.getters.gridboxPointsSpacing; },
+            
+            vinaCenterX() { return store.getters.gridboxCenterX; },
+            vinaCenterY() { return store.getters.gridboxCenterY; },
+            vinaCenterZ() { return store.getters.gridboxCenterZ; },
+            
+            vinaSizeX() { return store.getters.gridboxPointsX * store.getters.gridboxPointsSpacing; },
+            vinaSizeY() { return store.getters.gridboxPointsY * store.getters.gridboxPointsSpacing; },
+            vinaSizeZ() { return store.getters.gridboxPointsZ * store.getters.gridboxPointsSpacing; },
+        
+        },
+        
+        created() {
+            
+            Event.$on('show configure', function() {
+                this.display = null;
+            }.bind(this))
+            
+            Event.$on('hide configure', function() {
+                this.display = 'none';
+            }.bind(this))
+            
+        },
+        
+    })
+    
+    Vue.component('download', {
+        
+        delimiters: ["[[", "]]"],
+    
+        template: `
+            <div :style="{ display: display }">
+                <header class="card-header">
+                    <p class="card-header-title">Download Sturcture</p>
+                </header>
+                
+                <div class="card-content" style="padding: 13em 0;">
+                    <div class="buttons is-centered is-marginless">
+                        
+                        <a class="button is-primary is-large is-warning" @click="download">
+                            <span class="icon is-small">
+                                <i class="fas fa-download"></i>
+                            </span>
+                            <br>
+                            <span>Download This Sturcture</span>
+                        </a>
+                    </div>
+
+                    <article class="message is-warning is-marginless" :style="{ 'display': displayWarningMsg }">
+                        <div class="message-header is-warning" style="float: left; left: 50%; transform: translateX(-50%);">
+                            <p>[[message]]</p>
+                        </div>
+                    </article>
+                    
+                    <article class="message is-success is-marginless" :style="{ 'display': displaySuccessMsg }">
+                        <div class="message-header is-warning" style="float: left; left: 50%; transform: translateX(-50%);">
+                            <p>[[message]]</p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        `,
+        
+        data: function() {
+            return {
+                
+                display: 'none',
+                
+                message: null,
+                
+                show: {
+                    warningMsg: false,
+                    successMsg: false,
+                },
+                
+            }
+        },
+        
+        computed: {
+            
+            displayWarningMsg() { return this.displayEncoder(this.show.warningMsg) },
+            
+            displaySuccessMsg() { return this.displayEncoder(this.show.successMsg) },
+            
+        },
+        
+        methods: {
+            
+            hideAllMsg() {
+                
+                this.show.warningMsg = false;
+                this.show.successMsg = false;
+                this.message = null;
+                
+            },
+            
+            displayEncoder(boolean) {
+                if (boolean) {
+                    return null;
+                } else {
+                    return 'none';
+                }
+            },
+            
+            getApplyGridboxConfig() {
+                
+                var pdb = store.getters.pdbContent;
+                
+                var x = parseInt(store.getters.gridboxCenterX);
+                var y = parseInt(store.getters.gridboxCenterY);
+                var z = parseInt(store.getters.gridboxCenterZ);
+                
+                var rx = parseInt(store.getters.gridboxPointsX) * parseFloat(store.getters.gridboxPointsSpacing);
+                var ry = parseInt(store.getters.gridboxPointsY) * parseFloat(store.getters.gridboxPointsSpacing);
+                var rz = parseInt(store.getters.gridboxPointsZ) * parseFloat(store.getters.gridboxPointsSpacing);
+                
+                var deg_x = 0;
+                var deg_y = parseInt(store.getters.gridboxRotateAngle);
+                var deg_z = parseInt(store.getters.gridboxTiltAngle);
+                
+                return { 'pdb': pdb, 'x': x, 'y': y, 'z': z, 'rx': rx, 'ry': ry, 'rz': rz,
+                         'deg_x': deg_x, 'deg_y': deg_y, 'deg_z': deg_z }
+                
+            },
+            
+            downloadPDB(pdbContent) {
+                var pdb_text = 'TITLE    AutoBox SERVER, 2018 (' + window.location.origin + ')\n' + pdbContent + '\nEND';
+                download(pdb_text, 'autobox.pdb', "text/plain")
+            },
+            
+            download() {
+                
+                this.hideAllMsg();
+                this.message = 'Processing...';
+                this.show.warningMsg = true;
+                
+                var ApplyGridboxConfig = this.getApplyGridboxConfig();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: $SCRIPT_ROOT + '/apply_gridbox',
+                    data: ApplyGridboxConfig,
+                    success: function(json_str) {
+                        //console.log('apply');
+                        
+                        this.hideAllMsg();
+                        this.message = 'Ready!';
+                        this.show.successMsg = true;
+                        
+                        var responses = JSON.parse(json_str);
+                        var pdbContent = responses['pdb'];
+                        this.downloadPDB(pdbContent);
+                        
+                        _.delay( () => {
+                            this.hideAllMsg();
+                        }, 100);
+                        
+                    }.bind(this),
+                });
+            },
+            
+        },
+        
+        created() {
+            
+            Event.$on('show download', function() {
+                this.display = null;
+            }.bind(this))
+            
+            Event.$on('hide download', function() {
+                this.display = 'none';
+            }.bind(this))
+            
+        },
+        
+    })
+    
+    Vue.component('show', {
+        
+        delimiters: ["[[", "]]"],
+    
+        template: `
+            <div :style="{ display: display }">
+                <header class="card-header">
+                    <p class="card-header-title">Show / Label</p>
+                </header>
+                
+                <div class="card-content">
+
+                    <div class="show-table-header">
+                        <table class="table is-marginless is-striped is-hoverable is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th><abbr title="Residue Name">ResName</abbr></th>
+                                    <th><abbr title="Residue Number">ResNum</abbr></th>
+                                    <th>Show</th>
+                                    <th>Label</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div ref="showTable" class="show-table-body">
+
+                        <table class="table is-marginless is-striped is-hoverable is-fullwidth">    
+                            <tbody>
+                                <tr v-for="atom in atomList">
+                                    <td>[[ atom.resn ]]</td>
+                                    <td>[[ atom.rescode ]]</td>
+                                    <td>
+                                        <abbr title="Show"><label class="checkbox">
+                                            <input type="checkbox" :value="atom.rescode"
+                                                   v-model="checkedShow" @click="checkedShowToggle(atom)">
+                                        </label></abbr>
+                                    </td>
+                                    <td>
+                                        <abbr title="Label"><label class="checkbox">
+                                            <input type="checkbox" :value="atom.rescode"
+                                                   v-model="checkedLabel" @click="checkedLabelToggle(atom)">
+                                        </label></abbr>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        `,
+        
+        data: function() {
+            return {
+                
+                display: 'none',
+                
+                atomList: [],
+                
+                checkedShow: [],
+                
+                checkedLabel: [],
+                
+            }
+        },
+        
+        methods: {
+            
+            checkedShowToggle(atom) {
+                
+                //alert(this.checkedShow);
+                
+                if (!this.checkedShow.includes(atom.rescode)) {
+                    
+                    //alert('checked');
+                    Event.$emit('show stick', atom);
+                
+                } else {
+                
+                    //alert('unchecked');
+                    Event.$emit('hide stick', atom);
+                
+                }
+                
+            },
+            
+            checkedLabelToggle(atom) {
+                
+                //alert(this.checkedShow);
+                
+                if (!this.checkedLabel.includes(atom.rescode)) {
+                    
+                    //alert('checked');
+                    Event.$emit('show label', atom);
+                
+                } else {
+                
+                    //alert('unchecked');
+                    Event.$emit('hide label', atom);
+                
+                }
+                
+            },
+                
+        },
+        
+        created() {
+            
+            Event.$on('show show', function() {
+                this.display = null;
+            }.bind(this));
+            
+            Event.$on('hide show', function() {
+                this.display = 'none';
+            }.bind(this));
+            
+            Event.$on('update atomList', function(atomList) {
+                //console.log(atomList[0]);
+                this.atomList = this.atomList.slice(0,0).concat(atomList);
+                this.checkedShow = this.checkedShow.slice(0,0);
+                this.checkedLabel = this.checkedLabel.slice(0,0);
+                //console.log(this.atomList[0].resn);
+            }.bind(this));
+            
+        },
+        
+        mounted() {
+         
+            // Add scroll bar
+            $(this.$refs.showTable).perfectScrollbar();
+            
+        },
+        
+        filters: {
+            
+            capitalize: function (value) {
+                return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+            },
+            
+        },
+        
+    })
+    
+    Vue.component('illustration', {
+    
+        template: `
+            <article class="message is-success is-bold is-marginless" :style="{ display: display }">
+                <div class="message-body" style="min-height: 33.4em;">
+                    <h2 class="title" style="margin-top: 0.8em;">
+                      What it provides?
+                    </h2>
+                    <p>
+                        As in AutoDockTools, it provides you an UI to create a grid box, of which you can freely move the center and adjust the size (points). However, in <strong>AutoBox</strong>, you can even <strong>rotate</strong> the box! <i class="far fa-smile"></i>
+                    </p>
+                    <br>
+                    <p>
+                        It requires you uploaing a pdb file of a clear single chain structure, and it provides you a pdb file of a <strong>transformed structure</strong> and the <strong>configure lines</strong> corrisponding to the current grid box settings, which can be directly used in <strong>AutoDock</strong> and <strong>Vina</strong> software! <i class="fas fa-thumbs-up"></i>
+                    </p>
+                    <br>
+                    <p>
+                        Since AutoDock and Vina only allow the grid box aligning the Cartesian coordinate axes, instead of rotating your grid box, what it really does, when pressing the "<strong>Download This Structure</strong>" button, is to automatically rotate your structure to fit the rotated angle you want your grid box to be! You can also press the "<strong>Apply</strong>" button to instantly see how your structure being rotated! <i class="fab fa-angellist"></i>
+                    </p>
+                    <br>
+                    <p style="margin-bottom: 1.6em;">
+                        Try it now! <i class="far fa-hand-peace"></i>
+                    </p>
+                </div>
+            </article>
+        `,
+        
+        data: function() {
+            return {
+                display: 'static',
+            }
+        },
+        
+        created() {
+            
+            Event.$on('show illustration', function() {
+                this.display = null;
+            }.bind(this))
+            
+            Event.$on('hide illustration', function() {
+                this.display = 'none';
+            }.bind(this))
+            
+        },
+        
+    })
+    
+    Vue.component('viewer', {
+    
+        template: `
+            <div style="height: 33.4em;" :style="{ display: display }">
+                <div ref="molViewer" class="mol-container"></div>
+                <input id="selected-residue" style="display: none;" />
+            </div>
+        `,
+        
+        data: function() {
+            return {
+                
+                display: 'none',
+                
+                glviewer: null,
+                
+                GLM_molecule: null,
+                
+                GLS_gridbox: null,
+    
+                GLS_gridbox_center: null,
+                
+                GLS_proceeding_axis: null,
+                
+                GLS_rotation_axis: null,
+            }
+        },
+        
+        computed: {
+          
+            pdbContent() { return store.getters.pdbContent; },
+            
+            ivalGridboxCenterX() { return store.getters.gridboxCenterX; },
+            ivalGridboxCenterY() { return store.getters.gridboxCenterY; },
+            ivalGridboxCenterZ() { return store.getters.gridboxCenterZ; },
+            
+            ivalGridboxPointsX() { return store.getters.gridboxPointsX; },
+            ivalGridboxPointsY() { return store.getters.gridboxPointsY; },
+            ivalGridboxPointsZ() { return store.getters.gridboxPointsZ; },
+            ivalGridboxPointsSpacing() { return store.getters.gridboxPointsSpacing; },
+            
+            ivalGridboxRotateAngle() { return store.getters.gridboxRotateAngle; },
+            ivalGridboxTiltAngle() { return store.getters.gridboxTiltAngle; },
+            
+        },
+        
+        watch: {
+            
+            'pdbContent': ['loadMolecule', 'updateAtomList'],
+            
+            'ivalGridboxCenterX': 'loadGridbox',
+            'ivalGridboxCenterY': 'loadGridbox',
+            'ivalGridboxCenterZ': 'loadGridbox',
+            
+            'ivalGridboxPointsX': 'loadGridbox',
+            'ivalGridboxPointsY': 'loadGridbox',
+            'ivalGridboxPointsZ': 'loadGridbox',
+            'ivalGridboxPointsSpacing': 'loadGridbox',
+            
+            'ivalGridboxRotateAngle': 'loadGridbox',
+            'ivalGridboxTiltAngle': 'loadGridbox',
+            
+        },
+        
+        methods: {
+            
+            loadMolecule() {
+                
+                if (this.GLM_molecule === null) {
+                    
+                    this.GLM_molecule = load_molecule(this.glviewer, this.pdbContent);
+                    
+                } else {
+                    
+                    this.glviewer.labels.forEach(function(label) {
+                        this.glviewer.removeLabel(label);
+                    }.bind(this));
+                    remove_molecule(this.glviewer, this.GLM_molecule);
+                    this.GLM_molecule = load_molecule(this.glviewer, this.pdbContent);
+                    
+                }
+                
+                this.glviewer.labels = [];
+                
+                this.glviewer.setClickable({}, true, function(atom, viewer){
+                    
+                    console.log(atom);
+                    
+                    if (atom.lastClickTime === 'undefined') {
+                        
+                        atom.lastClickTime = new Date().getTime();
+                    
+                    } else {
+                        
+                        var clickTimeInterval = new Date().getTime() - atom.lastClickTime;
+                        if (clickTimeInterval < 300) {
+                            viewer.center( { index: atom.index}, 300, true );
+                        }
+                        atom.lastClickTime = new Date().getTime();
+                        
+                    }
+                    
+                });
+                
+                // colors: http://www.javascriptexamples.info/search/locate-colors/11
+                this.glviewer.setHoverable({}, true, 
+                    function(atom,viewer,event,container) {
+                        if(!atom.label) {
+                            atom.label = viewer.addLabel(atom.resn + atom.resi + ':' + atom.atom, {
+                                fontSize: 14,
+                                position: atom,
+                                backgroundColor: 'darkviolet',
+                                fontColor:'white',
+                            });
+                            /*
+                            viewer.setStyle({ rescode: atom.rescode }, 
+                                            { cartoon: {colorscheme: 'ssJmol'},
+                                              stick: { colorscheme: 'cyanCarbon' }
+                                            }, true);
+                            viewer.render();
+                            */
+                        }
+                    },
+                    function(atom, viewer) { 
+                        if(atom.label) {
+                            viewer.removeLabel(atom.label);
+                            delete atom.label;
+                            /*
+                            viewer.setStyle({ resi: atom.rescode }, 
+                                             { cartoon: {colorscheme: 'ssJmol'},
+                                               stick: { hidden:true, colorscheme: 'cyanCarbon' }
+                                             }, true);
+                            viewer.render();
+                            */
+                        }
+                    },
+                );
+            
+            },
+            
+            updateAtomList() {
+                
+                var atomList = this.glviewer.selectedAtoms({ atom: 'CA' });
+                Event.$emit('update atomList', atomList);  
+                
+            },
+                
+            getGridboxConfig () {
+                
+                var x = parseInt(this.ivalGridboxCenterX);
+                var y = parseInt(this.ivalGridboxCenterY);
+                var z = parseInt(this.ivalGridboxCenterZ);
+                var rx = parseInt(this.ivalGridboxPointsX) * parseFloat(this.ivalGridboxPointsSpacing) / 2;
+                var ry = parseInt(this.ivalGridboxPointsY) * parseFloat(this.ivalGridboxPointsSpacing) / 2;
+                var rz = parseInt(this.ivalGridboxPointsZ) * parseFloat(this.ivalGridboxPointsSpacing) / 2;
+                var deg_x = 0;
+                var deg_y = parseInt(this.ivalGridboxRotateAngle);
+                var deg_z = parseInt(this.ivalGridboxTiltAngle);
+                
+                return { 'x': x, 'y': y, 'z': z, 'rx': rx, 'ry': ry, 'rz': rz,
+                         'deg_x': deg_x, 'deg_y': deg_y, 'deg_z': deg_z }
+                
+            },
+            
+            loadGridbox() {
+                
+                remove_gridbox(this.glviewer, this.GLS_gridbox);
+                
+                var gridboxConfig = this.getGridboxConfig();
+                
+                var gridbox = get_gridbox(gridboxConfig.x, gridboxConfig.y, gridboxConfig.z,
+                                          gridboxConfig.rx, gridboxConfig.ry, gridboxConfig.rz,
+                                          gridboxConfig.deg_x, gridboxConfig.deg_y, gridboxConfig.deg_z);
+                var polygon = get_polygon(gridboxConfig.deg_x, gridboxConfig.deg_y, gridboxConfig.deg_z);
+                
+                this.GLS_gridbox = add_gridbox(this.glviewer, gridbox, polygon);
+                                   //drawGridbox
+            },
+            
+            capitalize(value) {
+                return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+            },
+            
+        },
+        
+        created() {
+            
+            Event.$on('show viewer', () => {
+                this.display = null;
+                
+                `
+                Since "this.$refs.molViewer" will not occupy space before being rendered,
+                add a "fit_container" function to resize "this.glviewer" to fit its container
+                after "this.$refs.molViewer" being rendered and owning space.
+                `
+                // https://codingexplained.com/coding/front-end/vue-js/asynchronous-update-queue
+                this.$nextTick(function(){
+                    fit_container(this.glviewer);
+                });
+            })
+            
+            Event.$on('hide viewer', () => {
+                this.display = 'none';
+            })
+        },
+        
+        mounted() {
+            
+            this.glviewer = create_mol_viewer(this.$refs.molViewer);
+                 
+            Event.$on('mousedown knobGridboxCenterXContainer', () => {
+                
+                var gridboxConfig = this.getGridboxConfig();
+                
+                this.GLS_gridbox_center = add_gridbox_center(this.glviewer,
+                    gridboxConfig.x, gridboxConfig.y, gridboxConfig.z);
+                
+                $(document).mousemove(function( event ) {
+                    
+                    remove_gridbox_center(this.glviewer, this.GLS_gridbox_center);
+                    
+                    var gridboxConfig = this.getGridboxConfig();
+                    
+                    this.GLS_gridbox_center = add_gridbox_center(this.glviewer,
+                        gridboxConfig.x, gridboxConfig.y, gridboxConfig.z);
+                    
+                }.bind(this));
+                
+            });
+            
+            Event.$on('mousedown knobGridboxCenterYContainer', () => {
+                
+                var gridboxConfig = this.getGridboxConfig();
+                
+                this.GLS_gridbox_center = add_gridbox_center(this.glviewer,
+                    gridboxConfig.x, gridboxConfig.y, gridboxConfig.z);
+                
+                $(document).mousemove(function( event ) {
+                    
+                    remove_gridbox_center(this.glviewer, this.GLS_gridbox_center);
+                    
+                    var gridboxConfig = this.getGridboxConfig();
+                    
+                    this.GLS_gridbox_center = add_gridbox_center(this.glviewer,
+                        gridboxConfig.x, gridboxConfig.y, gridboxConfig.z);
+                    
+                }.bind(this));
+                
+            });
+            
+            Event.$on('mousedown knobGridboxCenterZContainer', () => {
+                
+                var gridboxConfig = this.getGridboxConfig();
+                
+                this.GLS_gridbox_center = add_gridbox_center(this.glviewer,
+                    gridboxConfig.x, gridboxConfig.y, gridboxConfig.z);
+                
+                $(document).mousemove(function( event ) {
+                    
+                    remove_gridbox_center(this.glviewer, this.GLS_gridbox_center);
+                    
+                    var gridboxConfig = this.getGridboxConfig();
+                    
+                    this.GLS_gridbox_center = add_gridbox_center(this.glviewer,
+                        gridboxConfig.x, gridboxConfig.y, gridboxConfig.z);
+                    
+                }.bind(this));
+                
+            });
+                                                              
+            Event.$on('mousedown knobGridboxRotateAngleContainer', () => {
+                
+                var gridboxConfig = this.getGridboxConfig();
+                
+                length = Math.max(gridboxConfig.rx, gridboxConfig.ry, gridboxConfig.rz) * 2;
+                this.GLS_proceeding_axis = add_proceeding_axis(
+                    this.glviewer, gridboxConfig.x, gridboxConfig.y, gridboxConfig.z, length);
+                
+                $(document).mousemove(function( event ) {
+                    
+                    remove_axis(this.glviewer, this.GLS_rotation_axis);
+                    
+                    var gridboxConfig = this.getGridboxConfig();
+                    
+                    this.GLS_rotation_axis = add_rotatation_axis(
+                        this.glviewer, gridboxConfig.x, gridboxConfig.y, gridboxConfig.z, length,
+                        gridboxConfig.deg_y, gridboxConfig.deg_z)
+                    
+                }.bind(this));
+                
+            });
+            
+            Event.$on('mousedown knobGridboxTiltAngleContainer', () => {
+                
+                var gridboxConfig = this.getGridboxConfig();
+                
+                length = Math.max(gridboxConfig.rx, gridboxConfig.ry, gridboxConfig.rz) * 2;
+                this.GLS_proceeding_axis = add_proceeding_axis(
+                    this.glviewer, gridboxConfig.x, gridboxConfig.y, gridboxConfig.z, length);
+                
+                $(document).mousemove(function( event ) {
+                    
+                    remove_axis(this.glviewer, this.GLS_rotation_axis);
+                    
+                    var gridboxConfig = this.getGridboxConfig();
+                    
+                    this.GLS_rotation_axis = add_rotatation_axis(
+                        this.glviewer, gridboxConfig.x, gridboxConfig.y, gridboxConfig.z, length,
+                        gridboxConfig.deg_y, gridboxConfig.deg_z)
+                    
+                }.bind(this));
+                
+            });
+    
+            $(document).mouseup(function() {
+                
+                $(document).unbind('mousemove');
+                remove_gridbox_center(this.glviewer, this.GLS_gridbox_center);
+                remove_axis(this.glviewer, this.GLS_proceeding_axis);
+                remove_axis(this.glviewer, this.GLS_rotation_axis);
+                
+            }.bind(this));
+            
+            Event.$on('show stick', function(atom) {
+                
+                //console.log('show stick');
+                this.glviewer.setStyle({ resi: atom.rescode },
+                                       { cartoon: {colorscheme: 'ssJmol' },
+                                         stick: { colorscheme: 'cyanCarbon' }
+                                       }, true);
+                this.glviewer.render();
+                
+            }.bind(this));
+            
+            Event.$on('hide stick', function(atom) {
+                
+                //console.log('hide stick');
+                this.glviewer.setStyle({ resi: atom.rescode }, 
+                                       { cartoon: {colorscheme: 'ssJmol'},
+                                         stick: { hidden:true, colorscheme: 'cyanCarbon' }
+                                       }, true);
+                this.glviewer.render();
+                
+            }.bind(this));
+            
+            Event.$on('show label', function(atom) {
+                
+                //console.log('show label');
+                var label = this.glviewer.addLabel(
+                    atom.resn + atom.rescode,
+                    {
+                        fontSize : 14,
+                        position : {
+                            x : atom.x,
+                            y : atom.y,
+                            z : atom.z
+                    },
+                });
+                label.rescode = atom.rescode;
+                this.glviewer.labels.push(label);
+                
+            }.bind(this));
+            
+            Event.$on('hide label', function(atom) {
+                
+                //console.log('hide label');
+                var label = this.glviewer.labels.filter(
+                    function(label) { return label.rescode === atom.rescode }).pop();
+                var index = this.glviewer.labels.indexOf(label);
+                this.glviewer.removeLabel(label);
+                this.glviewer.labels.splice(index, 1);
+                
+            }.bind(this));
+            
+            
+            
+        },
+    
+    })
+    
+    Vue.component('content-box', {
+        
+        template: `
+            <div class="tile is-ancestor">
+
+                <div class="tile is-parent">
+                    <div class="tile is-child card">
+                        <new-structure></new-structure>
+                        <grid-box></grid-box>
+                        <configure></configure>
+                        <download></download>
+                        <show></show>
+                    </div>   
+                </div>
+                
+                <div class="tile is-parent">
+                    <div class="tile is-child">
+                        <illustration></illustration>
+                        <viewer></viewer>
+                    </div>   
+                </div>
+
+            <div
+        `,
+
+    })
+    
+    Vue.component('footer-box', {
+        
+        template: `
+            <footer class="footer">
+              <div class="container">
+                <div class="content has-text-centered">
+                  <p>
+                    <strong>AutoBox</strong> by <a href="mailto:orange6318@hotmail.com">Kun-Lin</a>, <a href="http://dyn.life.nthu.edu.tw/">Computational Biology Lab</a>, Institute of Bioinformatics and Structural Biology, NTHU.<br>
+                    The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website contentis licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+                  </p>
+                </div>
+              </div>
+            </footer>
+        `,
+        
+    })
+    
+    Vue.component('document-box', {
+        
+        template: `
+            <div class="document-box">
+                <!--http://tholman.com/github-corners-->
+                <div style="position: relative;"><a href="https://github.com/SOA-KunLin/AutoBox" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a></div>
+                <header-box></header-box>
+                <navbar-box></navbar-box>
+                <content-box></content-box>
+                <footer-box></footer-box>
+            </div>
+        `,
+        
+    })
+    
+    new Vue({
+        
+        el: '#root',
+        
+    })
+
 </script>
 </body>
 </html>
